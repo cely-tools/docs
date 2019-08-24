@@ -1,0 +1,9 @@
+site_name: Cely
+nav:
+  - Home: _home.md
+  - Overview: overview.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API: api.md
+  - Understanding Keychain: understanding_keychain.md
+theme: readthedocs
