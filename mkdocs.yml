@@ -1,9 +1,26 @@
+---
 site_name: Cely
+copyright: Copyright &copy; 2019 <a href="http://celylog.in">Cely</a>
+theme:
+  name: readthedocs
+  custom_dir: theme
+extra:
+  theme_inverse: true
+extra_css:
+  - css/breadcrumbs.css
+  - css/code.css
+  - css/fabric.css
+  - css/cely.css
+  - css/sidenav.css
 nav:
-  - Home: _home.md
-  - Overview: overview.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - API: api.md
-  - Understanding Keychain: understanding_keychain.md
-theme: readthedocs
+- Home: index.md
+- Getting Started: getting_started.md
+- Installation: 'includes/installing-cely.md'
+- Usage: usage.md
+- API: api.md
+- Understanding Keychain: understanding_keychain.md
+
+markdown_extensions:
+  - toc:
+      permalink: "#"
+  - markdown_include.include
