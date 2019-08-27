@@ -7,7 +7,9 @@
 [![Build Status](https://app.bitrise.io/app/aff729145cb46dfe/status.svg?token=YUV0bymd7P_w2tdiKw2xOQ&branch=master)](https://app.bitrise.io/app/aff729145cb46dfe)
 [![codecov](https://codecov.io/gh/initFabian/Cely/branch/master/graph/badge.svg)](https://codecov.io/gh/initFabian/Cely)
 
-Cely is the quickest way to add login functionality to your application. No other solution compares.
+Cely is the quickest way to add login functionality to your application. No other solution comes close.
+
+![](images/background_cely_login.gif)
 
 ## Why Cely
 

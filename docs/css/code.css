@@ -1,359 +1,89 @@
-.codeblock-example {
-  border: 1px solid #e1e4e5;
-  border-bottom: none;
-  padding: 24px;
-  padding-top: 48px;
-  font-weight: 500;
-  background: #fff;
-  position: relative;
-}
+/*
+Description: Foundation 4 docs style for highlight.js
+Author: Dan Allen <dan.j.allen@gmail.com>
+Website: http://foundation.zurb.com/docs/
+Version: 1.0
+Date: 2013-04-02
+*/
 
-.codeblock-example:after {
-  content: "Example";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #9B59B6;
-  color: #fff;
-  padding: 6px 12px;
-}
-
-.codeblock-example.prettyprint-example-only {
-  border: 1px solid #e1e4e5;
-  margin-bottom: 24px;
-}
-
-.codeblock,
-pre.literal-block,
-.rst-content .literal-block,
-.rst-content pre.literal-block,
-div[class^='highlight'] {
-  border: 1px solid #e1e4e5;
-  padding: 0;
+.hljs {
+  display: block;
   overflow-x: auto;
+  padding: 0.5em;
   background: #fff;
-  margin: 1px 0 24px;
+  color: black;
 }
 
-.codeblock div[class^='highlight'],
-pre.literal-block div[class^='highlight'],
-.rst-content .literal-block div[class^='highlight'],
-div[class^='highlight'] div[class^='highlight'] {
-  border: none;
-  background: none;
-  margin: 0;
+.hljs-link,
+.hljs-emphasis,
+.hljs-attribute,
+.hljs-addition {
+  color: #070;
 }
 
-div[class^='highlight'] td.code {
-  width: 100%;
-}
-
-.linenodiv pre {
-  border-right: solid 1px #e6e9ea;
-  margin: 0;
-  padding: 12px;
-  font-family: "Source Code Pro","Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  color: #d9d9d9;
-}
-
-div[class^='highlight'] pre {
-  white-space: pre;
-  margin: 0;
-  padding: 12px;
-  font-family: "Source Code Pro","Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  display: block;
-  overflow: auto;
-  color: #404040;
-}
-
-@media print {
-  .codeblock,
-  pre.literal-block,
-  .rst-content .literal-block,
-  .rst-content pre.literal-block,
-  div[class^='highlight'],
-  div[class^='highlight'] pre {
-    white-space: pre-wrap;
-  }
-
-}
-
-.hll {
-  background-color: #ffc;
-  margin: 0 -12px;
-  padding: 0 12px;
-  display: block;
-}
-
-.c {
-  color: #998;
+.hljs-emphasis {
   font-style: italic;
 }
 
-.err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-
-.k {
-  font-weight: 700;
-}
-
-.o {
-  font-weight: 700;
-}
-
-.cm {
-  color: #998;
-  font-style: italic;
-}
-
-.cp {
-  color: #999;
-  font-weight: 700;
-}
-
-.c1 {
-  color: #998;
-  font-style: italic;
-}
-
-.cs {
-  color: #999;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.gd {
-  color: #000;
-  background-color: #fdd;
-}
-
-.gd .x {
-  color: #000;
-  background-color: #faa;
-}
-
-.ge {
-  font-style: italic;
-}
-
-.gr {
-  color: #a00
-}
-
-.gh {
-  color: #999;
-}
-
-.gi {
-  color: #000;
-  background-color: #dfd;
-}
-
-.gi .x {
-  color: #000;
-  background-color: #afa;
-}
-
-.go {
-  color: #888;
-}
-
-.gp {
-  color: #555;
-}
-
-.gs {
-  font-weight: 700;
-}
-
-.gu {
-  color: purple;
-  font-weight: 700;
-}
-
-.gt {
-  color: #a00;
-}
-
-.kc {
-  font-weight: 700;
-}
-
-.kd {
-  font-weight: 700;
-}
-
-.kn {
-  font-weight: 700;
-}
-
-.kp {
-  font-weight: 700;
-}
-
-.kr {
-  font-weight: 700;
-}
-
-.kt {
-  color: #458;
-  font-weight: 700;
-}
-
-.m {
-  color: #099;
-}
-
-.s {
+.hljs-strong,
+.hljs-string,
+.hljs-deletion {
   color: #d14;
 }
 
-.n {
-  color: #333;
+.hljs-strong {
+  font-weight: bold;
 }
 
-.na {
-  color: teal;
+.hljs-quote,
+.hljs-comment {
+  color: #998;
+  font-style: italic;
 }
 
-.nb {
-  color: #0086b3;
-}
-
-.nc {
-  color: #458;
-  font-weight: 700;
-}
-
-.no {
-  color: teal;
-}
-
-.ni {
-  color: purple;
-}
-
-.ne {
+.hljs-section,
+.hljs-title {
   color: #900;
-  font-weight: 700;
 }
 
-.nf {
-  color: #900;
-  font-weight: 700;
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #458;
 }
 
-.nn {
-  color: #555;
+.hljs-variable,
+.hljs-template-variable {
+  color: #336699;
 }
 
-.nt {
-  color: navy;
+.hljs-bullet {
+  color: #997700;
 }
 
-.nv {
-  color: teal;
+.hljs-meta {
+  color: #3344bb;
 }
 
-.ow {
-  font-weight: 700;
-}
-
-.w {
-  color: #bbb;
-}
-
-.mf {
+.hljs-code,
+.hljs-number,
+.hljs-literal,
+.hljs-keyword,
+.hljs-selector-tag {
   color: #099;
 }
 
-.mh {
-  color: #099;
+.hljs-regexp {
+  background-color: #fff0ff;
+  color: #880088;
 }
 
-.mi {
-  color: #099;
-}
-
-.mo {
-  color: #099;
-}
-
-.sb {
-  color: #d14;
-}
-
-.sc {
-  color: #d14;
-}
-
-.sd {
-  color: #d14;
-}
-
-.s2 {
-  color: #d14
-}
-
-.se {
-  color: #d14;
-}
-
-.sh {
-  color: #d14;
-}
-
-.si {
-  color: #d14;
-}
-
-.sx {
-  color: #d14;
-}
-
-.sr {
-  color: #009926;
-}
-
-.s1 {
-  color: #d14;
-}
-
-.ss {
+.hljs-symbol {
   color: #990073;
 }
 
-.bp {
-  color: #999;
-}
-
-.vc {
-  color: teal;
-}
-
-.vg {
-  color: teal;
-}
-
-.vi {
-  color: teal;
-}
-
-.il {
-  color: #099;
-}
-
-.gc {
-  color: #999;
-  background-color: #EAF2F5;
-}
-
-.hljs-title {
-  font-weight: normal !important;
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #007700;
 }
