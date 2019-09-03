@@ -1,6 +1,6 @@
-## .homeStoryboard
+## .loginViewController
 
-To use a storyboard that is not `Main.storyboard` as the application's entry point, simply set this custom Storyboard as `.homeStoryboard` inside of the `withOptions` in `Cely.setup(_:)`.
+To use your own login, set the custom Login ViewController as `.loginViewController` inside of the `withOptions` in `Cely.setup(_:)`.
 
 
 ```swift
@@ -10,7 +10,7 @@ To use a storyboard that is not `Main.storyboard` as the application's entry poi
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     Cely.setup(with: window!, forModel: User.ref, requiredProperties: [.token], withOptions: [
-        .homeStoryboard: UIStoryboard(name: "NonMain", bundle: nil)
+        .loginViewController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
     ])
 
     return true

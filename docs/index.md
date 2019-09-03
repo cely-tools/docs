@@ -13,6 +13,8 @@ Cely is the quickest way to add login functionality to your application. No othe
 
 ## Why Cely
 
+{!docs/includes/purpose-of-cely.md!}
+
 |              | Cely
 ---|---------------------------------------------------
  🚤 | Add login functionality in a fraction of the time

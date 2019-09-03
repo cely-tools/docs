@@ -1,0 +1,9 @@
+
+Most applications that work with [Keychain Services](https://developer.apple.com/documentation/security/keychain_services), use it to store sensitive information such as user credentials and tokens. When working with Keychain, you typically would find yourself using a framework like [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess), [Locksmith](https://github.com/matthewpalmer/Locksmith), or [keychain-swift](https://github.com/evgenyneu/keychain-swift). Even tutorials from some of the most reputable online resources encourage the use of these frameworks. Hell, even Apple provides a [wrapper](https://developer.apple.com/library/archive/samplecode/GenericKeychain/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007797-Intro-DontLinkElementID_2) around keychain.
+
+This is no coincidence either, Keychain Service is apart of Apple's lower level [Security Framework](https://developer.apple.com/documentation/security) which is written in C. I too would encourage you to use a framework instead of interfacing with this API directly. There's no need to reinvent the wheel when working with this API. But if you must, I suggest you bookmark [osstatus.com](https://www.osstatus.com/search/results?platform=all&framework=Security&search=#) to help you decipher all the possible `OSStatus` error codes your app will encounter.
+
+But **storing information securely is only one half of the solution**, the **other half is building a Login system**. This Login system will be an entirely different part of your codebase that will be responsible for interacting with your application's `UIWindow`, handle abrupt login status change (redirect to login screen), update Keychain, etc.
+
+This is where Cely comes in, it solves both problems by combining these two entirely different bits of functionality into one seamless all-in-one solution.
+
