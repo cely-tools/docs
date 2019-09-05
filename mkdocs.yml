@@ -20,7 +20,7 @@ nav:
   - Basic: usage/basic_usage.md
   - Advance: usage/advance_usage.md
 - Guides:
-  - Introduction: guides/0_introduction.md
+  - Introduction: guides/introduction.md
   - Quiet Re-Authentication: guides/quiet_re-authentication_flow.md
   - Loud Re-Authentication: guides/loud_re-authentication_flow.md
 - API: api.md
