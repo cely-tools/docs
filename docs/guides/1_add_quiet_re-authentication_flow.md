@@ -6,40 +6,32 @@ Quiet Re-Authentication allows your application to reauthenticate in the backgro
 ![](../images/guides/quiet_re-authentication_flow.jpg)
 
 
-<!--
-
-- Introduce Cely
-  - Talk about the problem Cely solves (keychain + login system)
-- Cely's responsibilities in Flow:
-  - switching screens
-  - storing in credentials
-- Developer's responsibilities:
-  - interfacing with Cely to store/retrieve credentials/data
-  - API calls
-    - handling success
-    - handling errors
-- diagram Flow + Cely/Developer overlay
--->
-
-## Introducing Cely
-
-{!docs/includes/purpose-of-cely.md!}
+## Quiet Re-Authentication with Cely
 
 In the next few sections were going to be going over Cely's role/responsibility in this flow and how to adopt it into your application.
 
 ## App Launch Flow
 
+<!--
+In this section:
+I want to go over the "app launch flow with cely" diagram.
+-->
+
+
 ![](../images/guides/quiet_re-authentication_flow-with_cely-app_launch_flow.jpg)
+
+
+#### Cely Responsibility
+
+<!--
+In this section:
+I want to go over the Cely's responsibility during the "app launch flow"
+-->
 
 With the recent changes made to the [App's Life Cycle](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), depending on what version of iOS your application will support, you will need to call `Cely.setup(_:)` in different parts of your app's codebase. If your application supports iOS 12 or earlier, `Cely.setup(_:)` will be called in `application:didFinishLaunchingWithOptions` inside of `AppDelegate.swift`. If your application supports iOS 13 and later, `Cely.setup(_:)` will be called in `scene:willConnectTo:options:` inside of `SceneDelegate.swift`.
 
 The rest of the guide will follow as if your application supports iOS 13 & later.
 
-
-
-### *Cely.setup(_:)*
-
-<!-- TODO: make sure `didFinishingLaunching` doesnt get called when an active application comes to the foreground -->
 
 ```swift
 // iOS 13 | Swift 5.0 | Xcode 11.0
@@ -69,11 +61,49 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 ```
 
-As a brief explanation, we pass your application's `UIWindow` to give Cely access to switch inbetween your Login and Home Screen. Next, we pass an instance of our `User` model which contains the `Property` enum. Finally, using the `requiredProperties` parameter, we tell Cely what properties are required in order to continue to the `.homeViewController`. In this example, if Cely does not find a property `.token` in its storage, it will redirect the user to `.loginViewController`.
+As a brief explanation, we pass your application's `UIWindow` to give Cely access to switch inbetween your Login and Home Screen. Next, we pass an instance of our `User` model which contains the `Property` enum. Finally, using the `requiredProperties` parameter, we tell Cely what properties are required in order to continue to the `.homeViewController`. In this example, if Cely does not find a property `.token` in its storage, or if `requiredProperties` is empty, Cely will redirect the user to `.loginViewController`.
 
-Under the assumption that the user has yet to log into the app, let's continue to the Login Flow.
 
-_Login Flow_
+#### Developer Responsibility
+
+<!--
+In this section:
+I want to go over the Developer's responsibility during the "app launch flow"
+-->
+
+Below is an example what is required of the developer to implement in order to complete the App Launch Flow for Quiet Re-Authentication. We will finish writing `sceneWillEnterForeground(_:)` in the **Expired Token Flow**.
+
+```swift
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+    ...
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        guard let token = Cely.get("token") as? String else { return Cely.logout() }
+
+        LoginService.status(for: token) { result in
+            switch result {
+            case .success:
+            case .failure(let error as HTTPError) where error == .unauthorized:
+                // TODO: Revisit in Expired Token Flow
+            }
+        }
+    }
+}
+```
+
+```swift
+class LoginService {
+    static func status(for token: String, completionHandler: @escaping (Result<Void?, Error>) -> Void) {
+        // make API call to check token status
+        completionHandler(someResult)
+    }
+}
+```
+
+
+
+## Login Flow
 ![](../images/guides/quiet_re-authentication_flow-with_cely-login_flow.jpg)
 
 When the user successfully logs in, ensure the user's token is saved to keychain using `Cely.save(_:)` before calling the method `Cely.changeStatus(_:)` which will redirect the user to the home screen. Below is a pseudo code example:
@@ -88,6 +118,9 @@ Login.Service(username: username, password: password)
 
 ```swift
 class LoginService {
+
+    ...
+
     static func login(username: String, password: String) {
         API.login(username: username, password: password) { result in
             switch result {
@@ -111,7 +144,7 @@ class LoginService {
 Though a built-in `LoginViewController` is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production.
 
 
-## Re-Authentication Flow
+## Expired Token Flow
 
 ![](../images/guides/quiet_re-authentication_flow-with_cely-expired_token_flow.jpg)
 
@@ -206,4 +239,4 @@ Upon success, since the credentials used to re-authenticate are still valid, **o
 
 ## Conclusion
 
-In conclusion, with this guide you should be given a high level overview of how to implement Quiet Re-Authentication in your application using Cely. This document is a living document so if something is not clear or if you feel we are missing something, please open up an issue on this repo. The Cely team values documentation above all, so your help to improve it would greatly be appreciated :).
+In conclusion, with this guide you should be given a high level overview of how to implement Quiet Re-Authentication in your application using Cely. This document is a living document so if something is not clear or if you feel we are missing something, please open up an issue on this repo. The Cely team values documentation above all, so your help to improve it would greatly be appreciated 😀.

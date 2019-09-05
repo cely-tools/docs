@@ -22,7 +22,7 @@ nav:
 - Guides:
   - Introduction: guides/0_introduction.md
   - Quiet Re-Authentication: guides/1_add_quiet_re-authentication_flow.md
-  - Loud Re-Authentication: guides/3_add_single_use_authentication_flow.md
+  - Loud Re-Authentication: guides/2_add_loud_re-authentication_flow.md
 - API: api.md
 - Understanding Keychain: understanding_keychain.md
 
