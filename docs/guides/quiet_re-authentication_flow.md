@@ -1,6 +1,6 @@
 # Introduction
 
-Quiet Re-Authentication allows your application to reauthenticate in the background without requiring the user to login. Below is a diagram illistrating the steps your application should take when adopting this flow.
+*Quiet Re-Authentication* allows your application to reauthenticate in the background without requiring the user to login. Below is a diagram illistrating the steps your application should take when adopting this flow.
 
 *Quiet Re-Authentication Flow*
 ![](../images/guides/quiet_re-authentication_flow.jpg)
@@ -28,9 +28,9 @@ In this section:
 I want to go over the Cely's responsibility during the "app launch flow"
 -->
 
-With the recent changes made to the [App's Life Cycle](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), depending on what version of iOS your application will support, you will need to call `Cely.setup(_:)` in different parts of your app's codebase. If your application supports iOS 12 or earlier, `Cely.setup(_:)` will be called in `application:didFinishLaunchingWithOptions` inside of `AppDelegate.swift`. If your application supports iOS 13 and later, `Cely.setup(_:)` will be called in `scene:willConnectTo:options:` inside of `SceneDelegate.swift`.
+With the recent changes made to the [App's Life Cycle](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), depending on what version of iOS your application will support, iOS 12 and earlier or iOS 13 and later — you will need to call `Cely.setup(_:)` in different parts of your app's codebase.
 
-The rest of the guide will follow as if your application supports iOS 13 & later.
+The rest of the guide will follow as if your application supports iOS 13 & later. In the next section we will shift our focus to `scene(_:willConnectTo:options:)`
 
 
 ```swift
@@ -71,7 +71,7 @@ In this section:
 I want to go over the Developer's responsibility during the "app launch flow"
 -->
 
-Below is an example of what is required of the developer to implement in order to complete the App Launch Flow for Quiet Re-Authentication. We will finish writing `sceneWillEnterForeground(_:)` in the **Expired Token Flow**.
+Below is an example of what is required of the developer to implement in order to complete the App Launch Flow for *Quiet Re-Authentication*. We check to see if the user is logged in — then retrieve the `token`. If no token is returned then we log the user out. Next, we check to see if the user's token is expired. If the token is expired we logout the user. We will finish writing `sceneWillEnterForeground(_:)` in the **Expired Token Flow**.
 
 ```swift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -79,16 +79,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ...
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        guard Cely.isLoggedIn() else { return }
+        if Cely.isLoggedIn() {
+            guard let token = Cely.get(key: "token") as? String
+                else { return Cely.logout() }
 
-        guard let token = Cely.get(key: "token") as? String
-            else { return Cely.logout() }
-
-        LoginService.status(for: token) { result in
-            switch result {
-            case .success:
-            case .failure(let error as HTTPError) where error == .unauthorized:
-                // TODO: Revisit in Expired Token Flow
+            LoginService.status(for: token) { result in
+                switch result {
+                case .success:
+                case .failure(let error as HTTPError) where error == .unauthorized:
+                    // TODO: Revisit in Expired Token Flow
+                }
             }
         }
     }
@@ -107,9 +107,15 @@ class LoginService {
 
 
 ## Login Flow
+
+<!--
+In this section:
+I want to go over the "login flow with cely" diagram.
+-->
+
 ![](../images/guides/quiet_re-authentication_flow-with_cely-login_flow.jpg)
 
-When the user successfully logs in, ensure the user's token is saved to keychain using `Cely.save(_:)` before calling the method `Cely.changeStatus(_:)` which will redirect the user to the home screen. Below is a pseudo code example:
+Though a built-in `LoginViewController` is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production. In this example, once the API has authenticated our credentials we save the `token` in keychain using `Cely.save(_:)`. If successful, we also store the user credentials in keychain using `Cely.credentials.set(_:)`. Lastly, we change the user's logged in status with cely using `Cely.changeStatus(_:)` which will transition our application to the `.homeViewController`. Below is a pseudo code example:
 
 ```swift
 // LoginViewController.swift
@@ -145,10 +151,12 @@ class LoginService {
 }
 ```
 
-Though a built-in `LoginViewController` is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production. In this example, once the API has authenticated our credentials we save the `token` in keychain using `Cely.save(_:)`. If successful, we also store the user credentials in keychain using `Cely.credentials.set(_:)`. Lastly, we change the user's logged in status with cely using `Cely.changeStatus(_:)` which will transition our application to the `.homeViewController`.
-
-
 ## Expired Token Flow
+
+<!--
+In this section:
+I want to go over the "expired token flow with cely" diagram.
+-->
 
 ![](../images/guides/quiet_re-authentication_flow-with_cely-expired_token_flow.jpg)
 
@@ -158,10 +166,19 @@ Up until this point we have stored the API token in Keychain Services using `Cel
 
 There are two places where we need to handle Re-authentication.
 
-- When the app starts up, *(if the user is already logged in)*
+- When the app launch, *(if the user is already logged in)*
 - When an API request returns `401` error
 
+#### App Launch
+
+With Scene based life-cycle events `sceneWillEnterForeground(_:)` will get called every time your application enters the foreground, regardless if its from a terminated/suspended state or background state.
+
 Below is a pseudo code example for when the application starts up:
+
+<!--
+In this section:
+I want to go over the methods [and actions] needed in `SceneDelegate` in order to handle a unauthenticated user during App Launch
+-->
 
 ```swift
 
@@ -211,6 +228,13 @@ class LoginService {
 }
 ```
 
+#### Handle `401` errors from API
+
+<!--
+In this section:
+I want to go over whats needed in order to reauthenticate a user on a 401 response
+-->
+
 It is up to the developer's discretion on how the second example, *API request returns `401` error*, will be architected. But essentially, you will need to do the following:
 
 - Intercept a failed response from an API request
@@ -253,4 +277,4 @@ Upon success, since the credentials used to re-authenticate are still valid, **o
 
 ## Conclusion
 
-In conclusion, with this guide you should be given a high level overview of how to implement Quiet Re-Authentication in your application using Cely. This document is a living document so if something is not clear or if you feel we are missing something, please open up an issue on this repo. The Cely team values documentation above all, so your help to improve it would greatly be appreciated 😀.
+In conclusion, with this guide you should be given a high level overview of how to implement *Quiet Re-Authentication* in your application using Cely. This document is a living document so if something is not clear or if you feel we are missing something, please open up an issue on this repo. The Cely team values documentation above all, so your help to improve it would greatly be appreciated 😀.

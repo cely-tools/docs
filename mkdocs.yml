@@ -21,8 +21,8 @@ nav:
   - Advance: usage/advance_usage.md
 - Guides:
   - Introduction: guides/0_introduction.md
-  - Quiet Re-Authentication: guides/1_add_quiet_re-authentication_flow.md
-  - Loud Re-Authentication: guides/2_add_loud_re-authentication_flow.md
+  - Quiet Re-Authentication: guides/quiet_re-authentication_flow.md
+  - Loud Re-Authentication: guides/loud_re-authentication_flow.md
 - API: api.md
 - Understanding Keychain: understanding_keychain.md
 
