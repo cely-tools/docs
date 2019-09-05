@@ -65,7 +65,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // ping a `/status` endpoint to determine if token is still valid
         // 401 error occurred:
-        guard let token = Cely.get("token") as? String else { Cely.logout() }
+        guard let token = Cely.get(key: "token") as? String else { Cely.logout() }
         LoginService.status(token) { result in
            //...
         }

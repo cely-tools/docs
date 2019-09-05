@@ -71,7 +71,7 @@ In this section:
 I want to go over the Developer's responsibility during the "app launch flow"
 -->
 
-Below is an example what is required of the developer to implement in order to complete the App Launch Flow for Quiet Re-Authentication. We will finish writing `sceneWillEnterForeground(_:)` in the **Expired Token Flow**.
+Below is an example of what is required of the developer to implement in order to complete the App Launch Flow for Quiet Re-Authentication. We will finish writing `sceneWillEnterForeground(_:)` in the **Expired Token Flow**.
 
 ```swift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -79,7 +79,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ...
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        guard let token = Cely.get("token") as? String else { return Cely.logout() }
+        guard Cely.isLoggedIn() else { return }
+
+        guard let token = Cely.get(key: "token") as? String
+            else { return Cely.logout() }
 
         LoginService.status(for: token) { result in
             switch result {
@@ -109,6 +112,7 @@ class LoginService {
 When the user successfully logs in, ensure the user's token is saved to keychain using `Cely.save(_:)` before calling the method `Cely.changeStatus(_:)` which will redirect the user to the home screen. Below is a pseudo code example:
 
 ```swift
+// LoginViewController.swift
 
 let username = usernameTextField.text
 let password = passwordTextField.text
@@ -141,21 +145,21 @@ class LoginService {
 }
 ```
 
-Though a built-in `LoginViewController` is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production.
+Though a built-in `LoginViewController` is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production. In this example, once the API has authenticated our credentials we save the `token` in keychain using `Cely.save(_:)`. If successful, we also store the user credentials in keychain using `Cely.credentials.set(_:)`. Lastly, we change the user's logged in status with cely using `Cely.changeStatus(_:)` which will transition our application to the `.homeViewController`.
 
 
 ## Expired Token Flow
 
 ![](../images/guides/quiet_re-authentication_flow-with_cely-expired_token_flow.jpg)
 
-If you come from a Backend development background, the idea of implementing a [refresh token](https://auth0.com/learn/refresh-tokens/) to handle re-authentication may see like the best option, but its going to cost a bit of overhead and precious developer time. Instead, because of the security Keychain Services provides, we are able to [store users credentials directly onto the device](https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain), making re-authentication extremely easy. How does Cely help us do this?
+If you come from a Backend development background, the idea of implementing a [refresh token](https://auth0.com/learn/refresh-tokens/) to handle re-authentication may seem like the best option, but its going to cost a bit of overhead and precious developer time. Instead, because of the security Keychain Services provides, we are able to [store users credentials directly onto the device](https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain), making re-authentication extremely easy. How does Cely help us do this?
 
 Up until this point we have stored the API token in Keychain Services using `Cely.save(_:)`, but it is expected for this token to eventually expire. When it does expire, we will be receiving `401` errors from our API. Since we are following the *Quiet Re-Authentication Flow*, our application will re-authenticate the user instead of logging them out.
 
 There are two places where we need to handle Re-authentication.
 
 - When the app starts up, *(if the user is already logged in)*
-- When an API responds with `401` error
+- When an API request returns `401` error
 
 Below is a pseudo code example for when the application starts up:
 
@@ -166,12 +170,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ...
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        guard Cely.isLoggedIn() else { return }
 
-        // ping a `/status` endpoint to determine if token is still valid
-        // 401 error occurred:
-        let credentials = Cely.credentials.get()
-        LoginService.reAuthenticate(username: credentials.username, password: credentials.password) {
-           //...
+        guard let token = Cely.get(key: "token") as? String
+            else { return Cely.logout() }
+
+        LoginService.status(for: token) { result in
+            switch result {
+            case .success:
+            case .failure(let error as HTTPError) where error == .unauthorized:
+                // * HERE *
+                let credentials = Cely.credentials.get()
+                LoginService.reAuthenticate(username: credentials.username, password: credentials.password) {
+                  // ...
+                }
+            }
         }
     }
 }
@@ -198,7 +211,7 @@ class LoginService {
 }
 ```
 
-It is up to the developer's discretion on how the second example, *API responds with `401` error*, will be architected. But essentially, you will need to do the following:
+It is up to the developer's discretion on how the second example, *API request returns `401` error*, will be architected. But essentially, you will need to do the following:
 
 - Intercept a failed response from an API request
 - Re-Authenticate user
@@ -222,6 +235,7 @@ class SomeService {
                 return LoginService.reAuthenticate(username: credentials.username, password: credentials.password) { (result) in
                     switch result {
                     case .success(let token):
+                        // * UPDATE TOKEN *
                         if Cely.save(token, forKey: "token", securely: true) == .success {
                             return SomeService.getSomeData(with: id, completionHandler: completionHandler)
                         }
