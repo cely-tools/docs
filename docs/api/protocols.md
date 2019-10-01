@@ -36,7 +36,6 @@ struct User: CelyUser {
 
 In the case you need more control of how user information is stored, you can set the `.storage` Cely option in [`Cely.setup(...)`](../#setup) to an object that conforms to `CelyStorageProtocol`.
 
-TODO: PUT A DIAGRAM OF HOW CELY STORAGE IS ARCHITECTED NOW
 
 ```swift
 /// Protocol a storage class must abide by in order for Cely to use it

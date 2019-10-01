@@ -1,6 +1,6 @@
-## `.celyAnimator`
+## [`.celyAnimator`](/api/constants/#enum-celyoptions)
 
-In order to override the transition animations when loggin in, you must create a `class`/`struct` that conforms to the [`CelyAnimator` protocol](TODO:). Instead of transition from `Left -> Right`, in the example below we are transitioning from `Top -> Bottom`. Feel free to use any animation frameworks/libraries within `loginTransition(_:)` or `logoutTransition(_:)`.
+In order to override the transition animations when loggin in, you must create a `class`/`struct` that conforms to the [`CelyAnimator` protocol](/api/protocols/#celyanimator). Instead of transition from `Left -> Right`, in the example below we are transitioning from `Top -> Bottom`. Feel free to use any animation frameworks/libraries within `loginTransition(_:)` or `logoutTransition(_:)`.
 
 
 ```swift

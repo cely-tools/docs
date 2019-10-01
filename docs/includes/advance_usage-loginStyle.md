@@ -1,4 +1,4 @@
-## `.loginStyle`
+## [`.loginStyle`](/api/constants/#enum-celyoptions)
 
 As of Cely's version 2.x.x, the built-in `LoginViewController` is more for rapid development/prototyping with the expectation that the developer will eventually configure Cely with their own `LoginViewController`. That's not to say that the role that Cely's built-in `LoginViewController` won't change in the future to include more customizable features and can become an overall end solution for some applications.
 
