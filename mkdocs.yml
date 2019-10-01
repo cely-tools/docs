@@ -11,19 +11,22 @@ extra_css:
   # - css/breadcrumbs.css
   # - css/fabric.css
   # - css/cely.css
-  # - css/sidenav.css
+  - css/sidenav.css
   # - css/code.css
 nav:
-- Home: index.md
-- Installation: 'includes/installing-cely.md'
+# - Home: index.md
+# - Installation: 'includes/installing-cely.md'
 - Usage:
   - Basic: usage/basic_usage.md
-  - Advance: usage/advance_usage.md
+#   - Advance: usage/advance_usage.md
 - Guides:
   - Introduction: guides/introduction.md
   - Quiet Re-Authentication: guides/quiet_re-authentication_flow.md
-  - Loud Re-Authentication: guides/loud_re-authentication_flow.md
-- API: api.md
+#   - Loud Re-Authentication: guides/loud_re-authentication_flow.md
+- API:
+  - Cely: api/index.md
+  - Protocols: api/protocols.md
+  - Constants: api/constants.md
 - Understanding Keychain: understanding_keychain.md
 
 markdown_extensions:
