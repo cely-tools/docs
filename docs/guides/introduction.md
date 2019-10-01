@@ -20,7 +20,7 @@ Not to be confused with [Silent Authentication](https://auth0.com/docs/api-auth/
 
 As far as the user is concerned, they only had to login once.
 
-This flow protects your application in the case where the user's password is updated on web and you need to prompt the user to re-authenticate via a Login Screen. There are a few other cases where prompting the user to re-authenticate might be necessary in this flow, such as restoring the application from backup onto another device or the user disabling FaceID/TouchID on device. Both of which will be covered in [Add Control List to Cely Credentials](TODO:).
+This flow protects your application in the case where the user's password is updated on the web and you need to prompt the user to re-authenticate via a Login Screen. There are a few other cases where prompting the user to re-authenticate might be necessary in this flow, such as restoring the application from backup onto another device or the user disabling FaceID/TouchID on device. Both of which will be covered in [Add Control List to Cely Credentials](TODO:).
 
 ## Loud Re-Authentication Flow
 

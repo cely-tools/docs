@@ -40,7 +40,7 @@
 }
 
 .wy-menu-vertical li.current {
-  background-color: #e5e5e5;
+  /* background-color: #e5e5e5; */
 }
 
 .wy-menu-vertical li.current a {
@@ -301,7 +301,7 @@
   bottom: 0;
   left: 0;
   padding-bottom: 2em;
-  width: 300px;
+  width: 450px;
   overflow-x: hidden;
   overflow-y: scroll;
   min-height: 100%;
@@ -354,7 +354,7 @@
 }
 
 .wy-nav-content-wrap {
-  margin-left: 300px;
+  margin-left: 600px;
   background: #fcfcfc;
   min-height: 100%
 }
@@ -389,7 +389,7 @@
   }
 
   .wy-nav-side {
-    left: -300px
+    left: -450px
   }
 
   .wy-nav-side.shift {
@@ -421,4 +421,11 @@
     margin: 0;
     background: #fcfcfc
   }
+}
+
+.toctree-l3 {
+  margin-left: 20px
+}
+.wy-menu-vertical li.current {
+  background-color: initial
 }
