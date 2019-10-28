@@ -47,7 +47,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 ```
-> Cely has a few defaults, one of which is to load a built-in `LoginViewController` to help with speedy development. If you would like to use your own login view controller checkout [setup own `LoginViewController`](/usage/advance_usage/#loginviewcontroller).
+
+Cely has a few defaults, one of which is to load a built-in `LoginViewController` to help with speedy development. If you would like to use your own login view controller checkout [setup own `LoginViewController`](/usage/advance_usage/#loginviewcontroller).
 
 Now hit **RUN** on Xcode. You should see Cely's default Login Screen (below):
 

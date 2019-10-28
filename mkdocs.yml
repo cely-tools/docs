@@ -10,12 +10,12 @@ theme:
 extra_css:
   # - css/breadcrumbs.css
   # - css/fabric.css
-  # - css/cely.css
+  - css/override-styles.css
   # - css/sidenav.css
   # - css/code.css
 nav:
-# - Home: index.md
-# - Installation: 'includes/installing-cely.md'
+- Home: index.md
+- Installation: 'includes/installing-cely.md'
 - Usage:
   - Basic: usage/basic_usage.md
   - Advance: usage/advance_usage.md
