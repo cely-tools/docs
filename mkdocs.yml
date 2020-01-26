@@ -6,6 +6,7 @@ theme:
   highlightjs: true
   custom_dir: 'theme/cely/'
   navigation_depth: 2
+  image_path: '/images/CelyLogo_beta.png'
 nav:
 - Home: index.md
 - Installation: 'includes/installing-cely.md'
