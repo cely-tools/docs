@@ -19,7 +19,7 @@ $ brew install carthage
 To integrate Cely into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```bash
-github "initFabian/Cely" ~> 2.1
+github "cely-tools/Cely" ~> 3.0.0-alpha.1
 ```
 
 ### CocoaPods
@@ -37,7 +37,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Cely', '~> 2.1'
+# Alpha builds are not deployed to cocoapods
+pod 'Cely', '~> 3.0'
 ```
 
 Then, run the following command:
