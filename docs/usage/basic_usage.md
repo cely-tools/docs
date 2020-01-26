@@ -1,21 +1,21 @@
 # Overview
 
+<!--
+THIS IS THE FIRST ENCOUNTER WITH THE PROJECT! NEEDS TO BE FAST!
+-->
 
-## Cely Defaults
+## Introduction
 
-Cely has a few defaults, one of which is to load a built-in `LoginViewController` to help with speedy development. Another default of Cely is to assume the application's entry point is `Main.storyboard`. If you need to change that behavior, please refer to [customize `.homeStoryboard`](TODO:)
+With the recent changes made to the [App's Life Cycle](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), depending on what version of iOS your application will support, you will need to call [`Cely.setup(_:)`](/api/cely#setupwithformodelrequiredpropertieswithoptions) in either your `AppDelegate` (_iOS 12 and earlier_) or `SceneDelegate` (_iOS 13 and later_). The rest of the guide will follow as if your application supports iOS 13 & later.
 
-This is a getting started guide will be using Cely's built-in customizable `LoginViewController`. If you would like to use your own login view controller checkout [setup own `LoginViewController`](TODO:).
+Cely has a few defaults to help with speedy development, one of which is to include a built-in `LoginViewController`. If you would like to use your own, checkout [setup own `LoginViewController`](/usage/advance_usage/#loginviewcontroller).
 
-<!-- Add install snippet here -->
 
 ## Cely Setup
 Let's start by creating a `User` model that conforms to the [`CelyUser`](http://celylog.in/api/#celyuser) Protocol:
 
 
 ```swift
-// User.swift
-
 import Cely
 
 struct User: CelyUser {
@@ -26,62 +26,108 @@ struct User: CelyUser {
 }
 ```
 
-Next, we'll implement [`Cely.setup(_:)`](http://celylog.in/api/#setupwithformodelrequiredpropertieswithoptions) method inside of `application(_:willFinishLaunchingWithOptions:)` in `AppDelegate.swift`. As [Apple's documentation states](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application):
-
-> This method is called after your app has been launched and its main storyboard or nib file has been loaded, but before your app’s state has been restored.
-
+In your application's `SceneDelegate.swift`, paste the following:
 
 ```swift
-// AppDelegate.swift -- Swift 4.0
+// iOS 13 | Swift 5.0 | Xcode 11.0
 
 import Cely
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [:])
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            self.window = window
+            window.makeKeyAndVisible()
 
-        return true
+            Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+                .homeViewController: UIHostingController(rootView: HomeContentView()),
+                .loginCompletionBlock: { (username: String, password: String) in
+                    if username == "hello" && password == "world" {
+                        // Store credentials and login
+                        print("Logging in...")
+                    }
+                }
+            ])
+        }
+
     }
 }
 ```
 
-Now hit **RUN** on Xcode. You should see Cely's default Login Screen (below):
+Now hit **RUN** on Xcode. You should see Cely's default login screen. Provide the credentials below and click **Login**.
+
+- username: `hello`
+- password: `world`
 
 ![](../images/getting_started_stage_0.png)
 
 
 ## Save Credentials
 
-When the user clicks the **Login** button, we need away to retrieve the `username` and `password`, we do that by using the `.loginCompletionBlock` option:
+Next, we need to save the credentials to Cely's secure storage using `Cely.credentials`. Finally, set the [`CelyStatus`](/api/constants#celystatus) to `.loggedIn` to trigger your application to login.
 
 ```swift
-Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
-    .loginCompletionBlock: { (username: String, password: String) in
-        if username == "hello" && password == "world" {
-            Cely.save(username, forKey: "username")
-            Cely.save("FAKETOKEN-\(username)\(password)", forKey: "token", securely: true)
-            Cely.changeStatus(to: .loggedIn)
-        }
-    }
-])
+if username == "hello" && password == "world" {
+    Cely.save("FAKETOKEN", forKey: "token", securely: true)
+    Cely.credentials.set(
+      username: username,
+      password: password,
+      server: "api.example.com"
+    )
+    Cely.changeStatus(to: .loggedIn)
+}
 ```
-
-Now hit **RUN** again on Xcode, you should be brought back to Cely's built-in `LoginViewController`. Set the credentials below:
-
-- username: `hello`
-- password: `world`
-
-
-Now click the **Login** button, this time you should be redirected to your application's _(entry on `Main.storyboard`)_.
 
 ![](../images/getting_started_first_login.gif)
 
 
+## Code:
+
+```swift
+// iOS 13 | Swift 5.0 | Xcode 11.0
+
+import Cely
+
+struct User: CelyUser {
+
+  enum Property: CelyProperty {
+      case token = "token"
+  }
+}
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            self.window = window
+            window.makeKeyAndVisible()
+
+            Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+                // Application entry point
+                .homeViewController: UIHostingController(rootView: HomeContentView()),
+                // handle Cely's default loginViewController event
+                .loginCompletionBlock: { (username: String, password: String) in
+                    if username == "hello" && password == "world" {
+                        Cely.save("FAKETOKEN", forKey: "token", securely: true)
+                        Cely.credentials.set(
+                          username: username,
+                          password: password,
+                          server: "api.example.com"
+                        )
+                        Cely.changeStatus(to: .loggedIn)
+                    }
+                }
+            ])
+        }
+    }
+}
+```
 
 
 ## What's next?
 
-- [Set custom `LoginViewController`](TODO:)
+- [Set custom `LoginViewController`](/usage/advance_usage/#loginviewcontroller)

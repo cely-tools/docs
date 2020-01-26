@@ -1,28 +1,32 @@
 ---
 site_name: Cely
-copyright: Copyright &copy; 2019 <a href="http://celylog.in">Cely</a>
+copyright: Copyright &copy; 2020 <a href="http://celylog.in">Cely</a>
 theme:
   name: readthedocs
   highlightjs: true
-  hljs_languages:
-    - swift
-  # custom_dir: theme
-extra_css:
-  # - css/breadcrumbs.css
-  # - css/fabric.css
-  # - css/cely.css
-  # - css/sidenav.css
-  # - css/code.css
+  custom_dir: 'theme/cely/'
+  navigation_depth: 2
 nav:
 - Home: index.md
 - Installation: 'includes/installing-cely.md'
 - Usage:
   - Basic: usage/basic_usage.md
   - Advance: usage/advance_usage.md
-- API: api.md
-- Understanding Keychain: understanding_keychain.md
+- Guides:
+  - Understanding Keychain: guides/understanding_keychain.md
+#   - Introduction: guides/introduction.md
+#   - Quiet Re-Authentication: guides/quiet_re-authentication_flow.md
+#   - Loud Re-Authentication: guides/loud_re-authentication_flow.md
+#   - Add FaceID/Touch: guides/hybrid_re-authentication_flow.md
+- API Reference:
+  - Cely: api/cely.md
+  - Cely Credentials: api/cely-credentials.md
+  - Protocols: api/protocols.md
+  - Constants: api/constants.md
 
 markdown_extensions:
   - toc:
       permalink: "#"
   - markdown_include.include
+
+
