@@ -1,6 +1,12 @@
 ---
 site_name: Cely
 copyright: Copyright &copy; 2020 <a href="http://celylog.in">Cely</a>
+
+site_url: https://www.celylog.in
+site_description: Plug-n-Play login framework written in Swift
+site_author: Cely Team
+repo_url: https://github.com/cely-tools/docs
+
 theme:
   name: readthedocs
   highlightjs: true
