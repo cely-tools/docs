@@ -1,3 +1,8 @@
+<!--
+Authors:
+- Fabian Buentello
+-->
+
 ## Overview
 
 The purpose of these guides are to not only give more in-depth usage of Cely's API, but to also educate readers on what should be considered best practices when creating your application's authentication flow. Though these guides will be using Cely, the concepts/practices mentioned can be applied without Cely.
@@ -24,7 +29,7 @@ This flow protects your application in the case where the user's password is upd
 
 ## Loud Re-Authentication Flow
 
-*Loud Re-Authentication* requires the user to re-authenticate everytime the application is being launched from a Suspended or Terminated State. Loud Re-Authenticating apps **do not retain authenticating information**, such as `token`, past the allocated memory for the application. Meaning, once your application is in the [Suspended or Terminated State](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), the application will require for the user to log back in.
+*Loud Re-Authentication* requires the user to re-authenticate everytime the application is being launched from a Suspended or Terminated State. Loud Re-Authenticating apps **do not retain authenticating information**, such as `token`, past the allocated memory for the application. Meaning, once your application is in the [Suspended or Terminated State](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle), the application will require the user to reauthenticate to continue use the app.
 
 ![](../images/guides/loud_re-authentication_flow.jpg)
 
@@ -33,6 +38,6 @@ In the case that your application has stayed in the Background State long enough
 
 ## Hybrid Re-Authentication Flow
 
-The Hybrid Re-Authentication Flow is an alternative flow you can use instead of Loud Re-Authentication. It acts as a "best of both worlds" type of solution. It keeps application data protected while keeping user interuption at a minimum. This is made possible by using technologies such as FaceID or TouchID.
+The Hybrid Re-Authentication Flow is an alternative flow you can use instead of Loud Re-Authentication. It acts as a "best of both worlds" solution. It keeps application data protected while keeping user interuption at a minimum. This is made possible by using technologies such as FaceID or TouchID.
 
 ![](../images/guides/hybrid_re-authentication_flow.jpg)

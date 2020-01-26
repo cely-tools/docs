@@ -1,6 +1,6 @@
 ## Why Cely
 
-TALK ABOUT: What exactly is cely? "stores user credentials" and "adds login functionality"
+Cely's goal is to add a secure login system into your app in under 30 seconds!
 
 ### Background
 

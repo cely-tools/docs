@@ -14,34 +14,24 @@ In this section:
     - Result: you get a -50 error
 -->
 
-The [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol) attribute is what allows you to add additional authentication such as `FaceID`, `TouchID`, Device Password, etc. You must set `kSecAttrAccessControl` attribute to a [`SecAccessControl`](https://developer.apple.com/documentation/security/secaccesscontrol) object. You do this by using the [`SecAccessControlCreateWithFlags(_:)`](https://developer.apple.com/documentation/security/1394452-secaccesscontrolcreatewithflags) function.
-
-_Below is its declaration:_
-```swift
-func SecAccessControlCreateWithFlags(_ allocator: CFAllocator?,
-                                   _ protection: CFTypeRef,
-                                   _ flags: SecAccessControlCreateFlags,
-                                   _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> SecAccessControl?
-```
-
-Below are the parameters for this function:
-
-| Parameter | Description | Example |
-|------------|----------|----------------------------|
-| `allocator:` | An optional object that allocates/reallocates/deallocates memory for Core Foundation objects | `nil` |
-| `protection:` | This will be an [Accessibility Value](https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_attribute_keys_and_values#1679100) | `kSecAttrAccessibleWhenUnlocked` |
-| `flags:` | This will either be a single [SecAccessControlCreateFlags](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags) or an Array of `SecAccessControlCreateFlags`. | `.userPresence` or `[.biometryCurrentSet, .or, .devicePasscode]` |
-| `error:` | Pointer to error object. | `nil` |
-
+In order to add biometrics such as FaceID or TouchID to a Keychain item, you must create a [`SecAccessControl`](https://developer.apple.com/documentation/security/secaccesscontrol) object using the [`SecAccessControlCreateWithFlags(_:)`](https://developer.apple.com/documentation/security/1394452-secaccesscontrolcreatewithflags) function and set it the [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol) attribute.
 
 _example_
 
 ```swift
 var error: Unmanaged<CFError>? = nil
-let access = SecAccessControlCreateWithFlags(nil,
+let accessControlObject = SecAccessControlCreateWithFlags(nil,
                                             kSecAttrAccessibleWhenUnlocked,
                                             .userPresence,
                                             &error)
+
+let item: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccessControl: accessControlObject
+    // ...
+]
+
+// ...
 ```
 
 ### Flags
@@ -78,19 +68,18 @@ the user how the app uses this data.
 
 ![](../../images/understanding-keychain/userPresence-flow.jpg)
 
-Above is the flow you can expect for your application to take when saving/retrieving a Keychain Item with the `.userPresence` flag. **It is very possible to encounter an [`errSecAuthFailed`](https://developer.apple.com/documentation/security/errsecauthfailed) error when retrieving `.userPresence` flagged items**. This happens if the user removes the device passcode after an `.userPresence` flagged item has already been saved. In addition, If the user adds back a passcode to the device *(it doesn't have to be the same passcode)* the item can once again be retrieved.
-
+Above is the flow you can expect for your application to take when saving/retrieving a Keychain Item with the `.userPresence` flag. **It is very possible to encounter [`errSecAuthFailed: -25293`](./#errsecauthfailed) errors when working with `.userPresence` flagged items.** Please review the above flows for a better understanding. In addition to the _Retrieving Flow_, If the user adds back a passcode to the device *(it doesn't have to be the same passcode)* the item can once again be retrieved.
 
 
 #### .biometryCurrentSet
 
-The flag that differs from `.userPresence` the most would be [.biometryCurrentSet](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/2937192-biometrycurrentset), it invalidates any Keychain Items once a finger is added or removed for TouchID or if the user re-enrolls for FaceID.
+The flag that differs from `.userPresence` the most would be [.biometryCurrentSet](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/2937192-biometrycurrentset), it invalidates any Keychain Items once a finger is added/removed on TouchID or if the user re-enrolls for FaceID.
 
 ![](../../images/understanding-keychain/biometryCurrentSet-flow.jpg)
 
 #### .applicationPassword
 
-The last flag we will go over is [.applicationPassword](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/1617930-applicationpassword), this allows for the user to set an application specific passcode in order to retrieve the item. When using this flag, iOS will prompt the user to insert a passcode. Meaning, you don't need to worry about providing a view to capture the application password. Unlike retrieving an item using device security such as `.devicePasscode`, after 5 failed attempts, Keychain returns the error `errSecAuthFailed` instead of disabling the item retrieval. Meaning, after 5 failed attempts the user can simply try again without being penalized.
+The last flag we will go over is [.applicationPassword](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/1617930-applicationpassword), this allows for the user to set an application specific passcode in order to retrieve the item. When using this flag, iOS will prompt the user to insert a passcode. Meaning, you don't need to worry about providing a view to capture the application password. Unlike retrieving an item using device security such as `.devicePasscode`, after 5 failed attempts, Keychain returns the error `errSecAuthFailed: -25293` instead of disabling the item retrieval. Meaning, after 5 failed attempts the user can simply try again without being penalized.
 
 
 #### Combining Flags
@@ -105,13 +94,11 @@ let access = SecAccessControlCreateWithFlags(nil,
                                             &error)
 ```
 
-Some combinations are not allowed such as `[.userPresence, .devicePasscode]`, so be sure to print out the `error` for more information.
+Some combinations are not allowed such as `[.userPresence, .devicePasscode]`, so be sure to print out any errors for more information.
 
-### Usage
+### FaceID/TouchID Example
 
-Next we will go over how to set `kSecAttrAccessControl` in order to add authentication such as FaceID or TouchID when retrieving an item from Keychain.
-
-_create example:_
+In this example, we will create an item that will require FaceID, TouchID, or Passcode in order to be retrieved.
 
 ```swift
 @IBAction func saveWithAccessFlagClicked(_ sender: Any) {
@@ -121,7 +108,7 @@ _create example:_
                                                       .userPresence,
                                                       &error) else { return }
 
-    let query: [CFString: Any] = [
+    let item: [CFString: Any] = [
         kSecClass: kSecClassInternetPassword,
         kSecAttrAccessControl: access,
         kSecAttrServer: "example.com",
@@ -129,7 +116,7 @@ _create example:_
         kSecValueData: "some-password".data(using: String.Encoding.utf8)!
     ]
 
-    let status = SecItemAdd(query as CFDictionary, nil)
+    let status = SecItemAdd(item as CFDictionary, nil)
     guard status == errSecSuccess else {
         print("status:", status)
         return
@@ -139,9 +126,8 @@ _create example:_
 }
 ```
 
-Upon retrieval of this item, using the query example below, the user will be asked to authenticate either using `FaceID`, `TouchID` or with the Device Password.
+Next, we will retrieve the `.userPresence` flagged item.
 
-_retrieve example_
 ```swift
 @IBAction func QueryClicked(_ sender: Any) {
 
@@ -163,8 +149,7 @@ _retrieve example_
     guard let item = someItem,
         let username = item[kSecAttrAccount] as? String,
         let passwordData = item[kSecValueData] as? Data,
-        let password = String(data: passwordData, encoding: .utf8)
-    else {
+        let password = String(data: passwordData, encoding: .utf8) else {
         print("Item not found")
         return
     }
@@ -183,7 +168,8 @@ In this section:
   - [kSecUseAuthenticationUISkip](https://developer.apple.com/documentation/security/ksecuseauthenticationuiskip) - Silently skip any items that require user authentication.
 -->
 
-Depending on how broad your search is when querying Keychain, you may be returned an item that has `kSecAttrAccessControl` set. Even though this might not be the item you are looking for, the user will be required to authenticate using whatever `SecAccessControlCreateFlag` the item was set to. Meaning, if a result is returned that requires FaceID authentication, the user will be required to authenticate. This might not be the best user experience depending on your application. You can exclude these items by using the [`kSecUseAuthenticationUI`](https://developer.apple.com/documentation/security/ksecuseauthenticationui) attribute.
+When querying items from Keychain, you may be returned items that have the `kSecAttrAccessControl` attribute set, which will require the user to authenticate in order to retrieve the item. You can exclude these results by setting the [`kSecUseAuthenticationUI`](https://developer.apple.com/documentation/security/ksecuseauthenticationui) attribute in your query.
+
 
 ```swift
 
@@ -203,7 +189,7 @@ Depending on how broad your search is when querying Keychain, you may be returne
 
 #### Notes
 
-When setting a `kSecAttrAccessControl` attribute on your Keychain Item, you cannot set the `kSecAttrAccessible` attribute on the Keychain Item itself. Doing so will result in a `errSecParam` error, even if both are set to the same value. As an example, the following will return an error:
+When setting a `kSecAttrAccessControl` attribute on your Keychain Item, you cannot set the `kSecAttrAccessible` attribute on the Keychain Item itself. Doing so will result in a `errSecParam: -50` error, even if both are set to the same value. As an example, the following will return an error:
 
 ```swift
 var error: Unmanaged<CFError>? = nil
@@ -215,7 +201,7 @@ guard let access = SecAccessControlCreateWithFlags(nil,
 let query: [CFString: Any] = [
     kSecAttrAccessControl: access,
     kSecAttrAccessible:kSecAttrAccessibleWhenUnlocked, // <--
-    ...
+    //...
 ]
 
 let status = SecItemAdd(query as CFDictionary, nil) // equals -50 (errSecParam)

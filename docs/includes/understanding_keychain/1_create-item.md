@@ -1,7 +1,7 @@
 
 ---
 
-### Writing Item
+### Create Item
 
 <!--
 In this section: I want to go over how to use `SecItemAdd(_:)`
@@ -10,19 +10,18 @@ and what happens if you try to create something that already exists - you get a 
 https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain
 -->
 
-Here is how to add something to Keychain.
-
+Use the [`SecItemAdd(_:)`](https://developer.apple.com/documentation/security/1401659-secitemadd) function to add an item to Keychain. Below is an example on how to add an item to Keychain.
 
 ```swift
 @IBAction func AddButtonClicked(_ sender: Any) {
-    let query: [CFString: Any] = [
+    let item: [CFString: Any] = [
         kSecClass: kSecClassInternetPassword,
         kSecAttrAccount: "username",
         kSecAttrServer: "example.com",
         kSecValueData: "some-password".data(using: String.Encoding.utf8)!
     ]
 
-    let status = SecItemAdd(query as CFDictionary, nil)
+    let status = SecItemAdd(item as CFDictionary, nil)
     guard status == errSecSuccess else {
         print("status:", status) // status: 0
         return
@@ -32,16 +31,19 @@ Here is how to add something to Keychain.
 }
 ```
 
-This is a goldilock example, meaning everything is setup correctly and no error's occurred, this of course will not happen everytime. In the case you click the `AddButtonClicked(_:)` button twice, you'd expect that Keychain will add another item into its database with duplicate data, right? **Wrong!** You will get the error `-25299` which is [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem). Please read it's documentation to get a list of attributes that must be unique. So in this case, since the `kSecClass` is set to `kSecClassInternetPassword`, if `kSecAttrAccount` and `kSecAttrServer` match any other item in the keychain, regardless if we added an additional field like `kSecAttrLabel`, we will recieve the `errSecDuplicateItem` error.
+This is a goldilock example, meaning everything is setup correctly and no error's occurred, this of course will not happen everytime. In the case `AddButtonClicked(_:)` executes twice, you'd expect that Keychain will add another item into its database with duplicate data, right? **Wrong!** This will result in error `errSecDuplicateItem: -25299`. Please read [`errSecDuplicateItem` documentation](https://developer.apple.com/documentation/security/errsecduplicateitem) to get a set of attributes (primary keys) that must be unique.
+
+In the following example, we are trying to store two `kSecClassInternetPassword` items in the Keychain. Since the set of `kSecAttrAccount` and `kSecAttrServer` are not unique between the items, the `item2` will result in the `errSecDuplicateItem` error.
+
 ```swift
-let query: [CFString: Any] = [
+let item1: [CFString: Any] = [
     kSecClass: kSecClassInternetPassword,
     kSecAttrAccount: account,
     kSecAttrServer: "example.com",
-    kSecValueData: password
+    kSecValueData: passwordData
 ]
 
-let status = SecItemAdd(query as CFDictionary, nil)
+let status = SecItemAdd(item1 as CFDictionary, nil)
 guard status == errSecSuccess else {
     print("status:", status) // status: 0
     return
@@ -49,18 +51,15 @@ guard status == errSecSuccess else {
 
 // ----
 
-let formatter = DateFormatter()
-formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-let dateStr = formatter.string(from: Date())
-let query2: [CFString: Any] = [
+let item2: [CFString: Any] = [
     kSecClass: kSecClassInternetPassword,
     kSecAttrAccount: account,
     kSecAttrServer: "example.com",
-    kSecAttrLabel: dateStr,
-    kSecValueData: password
+    kSecValueData: passwordData,
+    kSecAttrLabel: "some new label attribute"
 ]
 
-let status2 = SecItemAdd(query2 as CFDictionary, nil)
+let status2 = SecItemAdd(item2 as CFDictionary, nil)
 guard status2 == errSecSuccess else {
     print("status:", status2) // status: -25299
     return

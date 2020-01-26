@@ -1,4 +1,10 @@
 
+## Requirements
+
+- iOS 11.0+
+- Xcode 9.0+
+- Swift 4.0+
+
 ### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.

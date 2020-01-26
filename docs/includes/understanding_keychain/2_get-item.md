@@ -1,7 +1,7 @@
 
 ---
 
-### Querying Item
+### Querying Item(s)
 
 <!--
 In this section:
@@ -16,7 +16,7 @@ Note from [Apple documentation](https://developer.apple.com/documentation/securi
 
 > By default, your app can freely retrieve its own keychain items but not those of other apps. However, keychain services does provide mechanisms for broadening or narrowing that accessibility, for example, using the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) attribute.
 
-Below is an example to query data from Keychain. Take note that we are only searching across `kSecAttrServer` and not including `kSecAttrAccount`. Encountering the [`errSecItemNotFound`](./#errsecitemnotfound) error is common with this operation.
+Use the [`SecItemCopyMatching(_:)`](https://developer.apple.com/documentation/security/1398306-secitemcopymatching) function to query item(s) from Keychain. With the example below, take note that we are only searching across `kSecAttrServer` and not including `kSecAttrAccount`.
 
 ```swift
 @IBAction func QueryClicked(_ sender: Any) {
@@ -35,14 +35,12 @@ Below is an example to query data from Keychain. Take note that we are only sear
         return
     }
 
-    guard let item = someItem
-    /* TODO: More to come */
-    else {
-        print("no Item")
+    guard let item = someItem else {
+        print("no Item") // errSecItemNotFound: -25300
         return
     }
 
-
+    print("result: \(item)")
 }
 ```
 
@@ -56,7 +54,7 @@ let query: [CFString: Any] = [
 ]
 ```
 
-In addition to the attributes needed to query the item, the two most important attributes are:
+The two most important attributes when retrieving an item are:
 
 - [`kSecReturnAttributes`](https://developer.apple.com/documentation/security/ksecreturnattributes): **must be set to `true` in order to retrieve item's attributes**
 - [`kSecReturnData`](https://developer.apple.com/documentation/security/ksecreturndata): must be set to true in order to retrieve secret data.

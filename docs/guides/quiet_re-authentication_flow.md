@@ -1,3 +1,8 @@
+<!--
+Authors:
+- Fabian Buentello
+-->
+
 # Introduction
 
 *Quiet Re-Authentication* allows your application to reauthenticate in the background without requiring the user to login. Below is a diagram illistrating the steps your application should take when adopting this flow.

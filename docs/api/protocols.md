@@ -1,8 +1,6 @@
 ## `CelyUser `
 
-<br>
-
-`protocol` for an object to implement to allow Cely have access to the properties associated to a user.
+Protocol for an object to implement to allow Cely have access to the properties associated to a user.
 
 ```swift
 protocol CelyUser {
@@ -23,18 +21,13 @@ struct User: CelyUser {
 }
 ```
 
-
 <br>
 <br>
 <br>
 
+## `CelyStorageProtocol`
 
-
-## `CelyStorageProtocol `
-
-<br>
-
-In the case you need more control of how user information is stored, you can set the `.storage` Cely option in [`Cely.setup(...)`](../#setup) to an object that conforms to `CelyStorageProtocol`.
+In the case you need more control of how user information is stored, you can set the `.storage` [`CelyOption`](/api/constants/#celyoptions) in [`Cely.setup(...)`](/api/#setupwithformodelrequiredpropertieswithoptions) to an object that conforms to `CelyStorageProtocol`.
 
 
 ```swift
@@ -46,19 +39,13 @@ public protocol CelyStorageProtocol {
 }
 ```
 
-
-
-
-
 <br>
 <br>
 <br>
 
 ## `CelyStyle`
 
-<br>
-
-The `protocol` an object must conform to in order to customize Cely's default login screen. Since all methods are optional, Cely will use the default value for any unimplemented methods.
+A protocol for an object to conform to in order to customize Cely's default login screen. Since all methods are optional, Cely will use the default value for any unimplemented methods.
 
 
 ```swift
@@ -72,18 +59,13 @@ public protocol CelyStyle {
 }
 ```
 
-
-
-
 <br>
 <br>
 <br>
 
 ## `CelyAnimator`
 
-<br>
-
-The `protocol` an object must conform to in order to customize transitions between home and login screens.
+A protocol for an object to conform to in order to customize transitions between home and login screens.
 
 
 ```swift
@@ -93,4 +75,3 @@ public protocol CelyAnimator {
     func logoutTransition(to destinationVC: UIViewController?, with celyWindow: UIWindow)
 }
 ```
-

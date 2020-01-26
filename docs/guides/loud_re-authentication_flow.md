@@ -1,3 +1,8 @@
+<!--
+Authors:
+- Fabian Buentello
+-->
+
 # Introduction
 
 *Loud Re-Authentication* requires the user to re-authenticate everytime the application enters the foreground from a suspended or terminated state. In addition, it will require re-authentication once the user is no longer authenticated with the API.
@@ -7,7 +12,7 @@
 
 ## Loud Re-Authentication with Cely
 
-In the next few sections were going to be going over Cely's role/responsibility in this flow and how to adopt it into your application.
+In the next few sections were going to be going over Cely's role/responsibility in this flow and how to adopt it with your application.
 
 
 ## App Launch Flow
@@ -58,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 ```
 
-Cely is configured to follow *Loud Authentication* by default if no `requiredProperties` are passed into `Cely.setup(_:)`. This protects the application from an unintended state from occurring. Next, we pass your application's `UIWindow` to give Cely the ability to switch inbetween your Login and Home Screen. Finally, we pass an instance of our `User` model which contains the `Property` enum. Since no `requiredProperties` are passed in, Cely will redirect the user to the Login screen.
+Cely is configured to follow *Loud Authentication* by default if no `requiredProperties` are passed into `Cely.setup(_:)`. This protects the application from an unintended state. Next, we pass your application's `UIWindow` to give Cely the ability to switch inbetween your Login and Home Screen. Finally, we pass an instance of our `User` model which contains the `Property` enum. Since no `requiredProperties` are passed in, Cely will redirect the user to the Login screen.
 
 
 ### Developer Responsibility
