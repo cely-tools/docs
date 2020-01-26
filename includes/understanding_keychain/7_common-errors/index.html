@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>7 common errors - Cely</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "7 common errors";
+    var mkdocs_page_input_path = "includes/understanding_keychain/7_common-errors.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../..">
+          <img src="/images/CelyLogo_beta.png" />
+        </a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../installing-cely/">Installation</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../installing-cely/#carthage">Carthage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../installing-cely/#cocoapods">CocoaPods</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Usage</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../../usage/basic_usage/">Basic</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../../usage/basic_usage/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../usage/basic_usage/#cely-setup">Cely Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../usage/basic_usage/#save-credentials">Save Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../usage/basic_usage/#code">Code:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../usage/basic_usage/#whats-next">What's next?</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../usage/advance_usage/">Advance</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../../guides/understanding_keychain/">Understanding Keychain</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#keychain-anatomy">Keychain Anatomy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#keychain-operations">Keychain Operations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#accessibility">Accessibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#add-faceidtouchid">Add FaceID/TouchID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../guides/understanding_keychain/#common-errors">Common Errors</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API Reference</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../../api/cely/">Cely</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#setup_">setup(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#changestatus_">changeStatus(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#get_-gt-any">get(_:) -&gt; Any?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#save_-gt-result">save(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#currentloginstatus-gt-celystatus">currentLoginStatus() -&gt; CelyStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#logout_">logout(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely/#isloggedin-gt-bool">isLoggedIn() -&gt; Bool</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../api/cely-credentials/">Cely Credentials</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely-credentials/#set_-gt-result">set(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../../api/cely-credentials/#get-gt-result">get() -&gt; Result</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../api/protocols/">Protocols</a>
+    <ul >
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../api/constants/">Constants</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">Cely</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>7 common errors</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <hr />
+<h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to go over common errors that you might encounter when working with keychain
+
+errSecParam: -50
+errSecItemNotFound: -25300
+errSecDuplicateItem: -25299
+errSecNoSuchAttr: -25303
+https://developer.apple.com/documentation/security/errsecduplicateitem
+-->
+
+<h3 id="errsecitemnotfound-25300">errSecItemNotFound: -25300<a class="headerlink" href="#errsecitemnotfound-25300" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errsecitemnotfound"><code>errSecItemNotFound</code></a>, occurs when performing an Keychain operation such as <a href="https://developer.apple.com/documentation/security/1398306-secitemcopymatching"><code>SecItemCopyMatching(_:)</code></a>, <a href="https://developer.apple.com/documentation/security/1393617-secitemupdate"><code>SecItemUpdate(_:)</code></a>, or <a href="https://developer.apple.com/documentation/security/1395547-secitemdelete"><code>SecItemDelete(_:)</code></a> and Keychain fails to find any matching items. In the case of <code>SecItemUpdate(_:)</code> and <code>SecItemDelete(_:)</code>, its best to query for the item before trying to perform an operation.</p>
+<h3 id="errsecparam-50">errSecParam: -50<a class="headerlink" href="#errsecparam-50" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errSecParam"><code>errSecParam</code></a>, occurs when you fail to properly set an attribute. Where I see this happening the most is when you fail to properly encode the <code>kSecValueData</code> as <code>CFData</code> or you fail to provide a necessary attribute such as <code>kSecClass</code>. I would investigate those two attributes first when you encounter <code>errSecParam</code>.</p>
+<h3 id="errsecauthfailed-25293">errSecAuthFailed: -25293<a class="headerlink" href="#errsecauthfailed-25293" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errsecauthfailed"><code>errSecAuthFailed</code></a>, occurs when your application is trying to save an item that requires access control, but FaceID, TouchID, or Device Passcode are not setup on the device. Or if the user has removed the device's security since saving the item.</p>
+<h3 id="errsecnosuchattr-25303">errSecNoSuchAttr: -25303<a class="headerlink" href="#errsecnosuchattr-25303" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errSecNoSuchAttr"><code>errSecNoSuchAttr</code></a>, occurs when you try to set an attribute that doesn't exist for the provided <code>kSecClass</code>. In the bottom example we try to set <code>kSecAttrIssuer</code>, which is only available for the <code>kSecClassCertificate</code> class.</p>
+<pre><code class="swift">let password = &quot;some-password&quot;.data(using: String.Encoding.utf8)!
+let query: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccount: &quot;username&quot;,
+    kSecAttrIssuer: &quot;Fabian issuer&quot;.data(using: String.Encoding.utf8)!, // kSecClassCertificate only
+    kSecAttrServer: &quot;example.com&quot;,
+    kSecValueData: password
+]
+
+let status = SecItemAdd(query as CFDictionary, nil)
+guard status == errSecSuccess else {
+    print(&quot;status:&quot;, status) // status: -25303
+    return
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2020 <a href="http://celylog.in">Cely</a></p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+  <!-- at the end of the BODY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(() => $('table').addClass('docutils'));
+    // PASTE doc search here
+    /*
+    docsearch({
+      apiKey: '<KEY-GOES-HERE>',
+      indexName: 'cely',
+      inputSelector: '.wy-side-nav-search input[type="text"]',
+      debug: false
+    });
+    */
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Advance - Cely</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Advance";
+    var mkdocs_page_input_path = "usage/advance_usage.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../..">
+          <img src="/images/CelyLogo_beta.png" />
+        </a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../includes/installing-cely/">Installation</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#carthage">Carthage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#cocoapods">CocoaPods</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Usage</span></p>
+                <ul  class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../basic_usage/">Basic</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../basic_usage/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../basic_usage/#cely-setup">Cely Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../basic_usage/#save-credentials">Save Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../basic_usage/#code">Code:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../basic_usage/#whats-next">What's next?</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Advance</a>
+    <ul  class="current">
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/understanding_keychain/">Understanding Keychain</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#keychain-anatomy">Keychain Anatomy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#keychain-operations">Keychain Operations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#accessibility">Accessibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#add-faceidtouchid">Add FaceID/TouchID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/understanding_keychain/#common-errors">Common Errors</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API Reference</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely/">Cely</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#setup_">setup(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#changestatus_">changeStatus(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#get_-gt-any">get(_:) -&gt; Any?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#save_-gt-result">save(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#currentloginstatus-gt-celystatus">currentLoginStatus() -&gt; CelyStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#logout_">logout(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#isloggedin-gt-bool">isLoggedIn() -&gt; Bool</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely-credentials/">Cely Credentials</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#set_-gt-result">set(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#get-gt-result">get() -&gt; Result</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/protocols/">Protocols</a>
+    <ul >
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/constants/">Constants</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Cely</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Usage &raquo;</li>
+        
+      
+    
+    <li>Advance</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>The power of Cely's configuration comes from its <code>enum</code> dictionary for <code>CelyOptions</code>. Below are sections to go over these options.</p>
+<h2 id="loginviewcontroller"><a href="/api/constants/#enum-celyoptions"><code>.loginViewController</code></a><a class="headerlink" href="#loginviewcontroller" title="Permanent link">#</a></h2>
+<p>To use your own login, set the custom Login ViewController as <code>.loginViewController</code> inside of the <code>withOptions</code> in <code>Cely.setup(_:)</code>.</p>
+<pre><code class="swift">
+// iOS 13 | Swift 5.0 | Xcode 11.0
+
+Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+    .loginViewController: UIHostingController(rootView: LoginContentView())
+])
+
+</code></pre>
+
+<p><br>
+<br>
+<br></p>
+<h2 id="loginstyle"><a href="/api/constants/#enum-celyoptions"><code>.loginStyle</code></a><a class="headerlink" href="#loginstyle" title="Permanent link">#</a></h2>
+<p>As of Cely's version 2.x.x, the built-in <code>LoginViewController</code> is more for rapid development/prototyping with the expectation that the developer will eventually configure Cely with their own <code>LoginViewController</code>. That's not to say that the role that Cely's built-in <code>LoginViewController</code> won't change in the future to include more customizable features and can become an overall end solution for some applications.</p>
+<p>As of this writing, simply create a <code>class</code>/<code>struct</code> that conforms to the <code>CelyStyle</code>. Please refer to <a href="http://celylog.in/api/#celystyle"><code>CelyStyle</code></a> for more information on what's customizable. Here is an example:</p>
+<pre><code class="swift">struct CottonCandy: CelyStyle {
+    func backgroundColor() -&gt; UIColor {
+        return UIColor(red: 86/255, green: 203/255, blue: 249/255, alpha: 1)
+    }
+    func buttonTextColor() -&gt; UIColor {
+        return .white
+    }
+    func buttonBackgroundColor() -&gt; UIColor {
+       return UIColor(red: 253/255, green: 108/255, blue: 179/255, alpha: 1)
+    }
+    func textFieldBackgroundColor() -&gt; UIColor {
+        return UIColor.white.withAlphaComponent(0.4)
+    }
+    func appLogo() -&gt; UIImage? {
+        return UIImage(named: &quot;CelyLogo&quot;)
+    }
+}
+</code></pre>
+
+<p>Now to set this style, add <code>.loginStyle</code> to <code>withOptions:</code> in <code>Cely.setup(_:)</code>:</p>
+<pre><code class="swift">// AppDelegate.swift
+Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+    .loginStyle: CottonCandy(),
+    // ...
+])
+</code></pre>
+
+<p>Your built-in screen should've changed to:</p>
+<p><img alt="" src="../../images/getting_started_stage_1.png" /></p>
+<p><br>
+<br>
+<br></p>
+<h2 id="celyanimator"><a href="/api/constants/#enum-celyoptions"><code>.celyAnimator</code></a><a class="headerlink" href="#celyanimator" title="Permanent link">#</a></h2>
+<p>In order to override the transition animations when loggin in, you must create a <code>class</code>/<code>struct</code> that conforms to the <a href="/api/protocols/#celyanimator"><code>CelyAnimator</code> protocol</a>. Instead of transition from <code>Left -&gt; Right</code>, in the example below we are transitioning from <code>Top -&gt; Bottom</code>. Feel free to use any animation frameworks/libraries within <code>loginTransition(_:)</code> or <code>logoutTransition(_:)</code>.</p>
+<pre><code class="swift">struct VerticalAnimator: CelyAnimator {
+    func loginTransition(to destinationVC: UIViewController?, with celyWindow: UIWindow) {
+        if let snapshot = celyWindow.snapshotView(afterScreenUpdates: true) {
+            destinationVC?.view.addSubview(snapshot)
+            celyWindow.setCurrentViewController(to: destinationVC)
+
+
+            UIView.animate(withDuration: 0.5, animations: {
+                snapshot.transform = CGAffineTransform(translationX: 0.0, y: 1000.0)
+            }, completion: { (value: Bool) in
+                snapshot.removeFromSuperview()
+            })
+        }
+    }
+
+    func logoutTransition(to destinationVC: UIViewController?, with celyWindow: UIWindow) {
+        if let snapshot = celyWindow.snapshotView(afterScreenUpdates: true) {
+            destinationVC?.view.addSubview(snapshot)
+            celyWindow.setCurrentViewController(to: destinationVC)
+
+
+            UIView.animate(withDuration: 0.5, animations: {
+              snapshot.transform = CGAffineTransform(translationX: 0.0, y: -1000.0)
+            }, completion: {(value: Bool) in
+                snapshot.removeFromSuperview()
+            })
+        }
+    }
+}
+</code></pre>
+
+<p>Now to set this animation, add <code>.celyAnimator</code> to <code>withOptions:</code> in <code>Cely.setup(_:)</code>:</p>
+<pre><code class="swift">// AppDelegate.swift
+Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+    .celyAnimator: VerticalAnimator()
+    // ...
+])
+</code></pre>
+
+<p>You application should now transition from <code>Top -&gt; Bottom</code>:</p>
+<p><img alt="" src="../../images/cely_animator_vertical.gif" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2020 <a href="http://celylog.in">Cely</a></p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../basic_usage/" style;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../guides/understanding_keychain/" style">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+  <!-- at the end of the BODY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(() => $('table').addClass('docutils'));
+    // PASTE doc search here
+    /*
+    docsearch({
+      apiKey: '<KEY-GOES-HERE>',
+      indexName: 'cely',
+      inputSelector: '.wy-side-nav-search input[type="text"]',
+      debug: false
+    });
+    */
+  </script>
+
+</body>
+</html>

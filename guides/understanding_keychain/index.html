@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Understanding Keychain - Cely</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Understanding Keychain";
+    var mkdocs_page_input_path = "guides/understanding_keychain.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../..">
+          <img src="/images/CelyLogo_beta.png" />
+        </a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../includes/installing-cely/">Installation</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#carthage">Carthage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#cocoapods">CocoaPods</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Usage</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/basic_usage/">Basic</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#cely-setup">Cely Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#save-credentials">Save Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#code">Code:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#whats-next">What's next?</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/advance_usage/">Advance</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul  class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Understanding Keychain</a>
+    <ul  class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#keychain-anatomy">Keychain Anatomy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#keychain-operations">Keychain Operations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#accessibility">Accessibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-faceidtouchid">Add FaceID/TouchID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API Reference</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely/">Cely</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#setup_">setup(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#changestatus_">changeStatus(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#get_-gt-any">get(_:) -&gt; Any?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#save_-gt-result">save(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#currentloginstatus-gt-celystatus">currentLoginStatus() -&gt; CelyStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#logout_">logout(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#isloggedin-gt-bool">isLoggedIn() -&gt; Bool</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely-credentials/">Cely Credentials</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#set_-gt-result">set(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#get-gt-result">get() -&gt; Result</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/protocols/">Protocols</a>
+    <ul >
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/constants/">Constants</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Cely</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Guides &raquo;</li>
+        
+      
+    
+    <li>Understanding Keychain</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="understanding-keychain">Understanding Keychain<a class="headerlink" href="#understanding-keychain" title="Permanent link">#</a></h1>
+<blockquote>
+<p><strong>This is a living document, so expect updates in the future. 📖</strong></p>
+</blockquote>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>Most applications that work with <a href="https://developer.apple.com/documentation/security/keychain_services">Keychain Services</a>, use it to store sensitive information such as user credentials and tokens. When working with Keychain, you typically would find yourself using a framework like <a href="https://github.com/kishikawakatsumi/KeychainAccess">KeychainAccess</a>, <a href="https://github.com/matthewpalmer/Locksmith">Locksmith</a>, or <a href="https://github.com/evgenyneu/keychain-swift">keychain-swift</a>. Even tutorials from some of the most reputable online resources encourage the use of these frameworks. Even Apple provides a <a href="https://developer.apple.com/library/archive/samplecode/GenericKeychain/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007797-Intro-DontLinkElementID_2">wrapper</a> around keychain.</p>
+<blockquote>
+<p><em>Now why is this article even necessary when the user can just use the Cely framework?</em></p>
+</blockquote>
+<p>We feel Cely should be considered as an end solution for 99% of codebases that store credentials securely and have a login system. It's the remaining 1% of codebases that require a small tweak that this article is targeting. We've seen many frameworks change their API only to accommodate a small fraction of their userbase. Given the remaining 1%, each requiring different solutions, trying to solve everyone's problem is not the approach the Cely team wants to take moving forward. Instead, we'd like to enable developers to build out this remaining 1% themselves.</p>
+<p>By the end of this article — we hope the reader should have a firm grasp of <a href="https://developer.apple.com/documentation/security/keychain_services">Keychain Services</a> and what all that entails. We will cover Keychain Services in depth, going over simple CRUD operations, ACL, biometrics, etc.</p>
+<hr />
+<h2 id="keychain-anatomy">Keychain Anatomy<a class="headerlink" href="#keychain-anatomy" title="Permanent link">#</a></h2>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Keychain Services expects Core Foundation objects, hence the <code>CF</code> prefix on some of the properties/attributes, such as <code>CFDictionary</code>, <code>CFData</code>, etc. Don't be intimidated, you can still use the <code>Data</code> type since Apple has bridges for these types. Read <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html">Tool-Free Bridging</a> for more information.</p>
+</blockquote>
+<p>The Keychain is an encrypted database stored on disk consistenting of <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items">Keychain Items</a>. A Keychain Item is made up of attributes and the data you wish to encrypt.</p>
+<h3 id="ksecclass">kSecClass<a class="headerlink" href="#ksecclass" title="Permanent link">#</a></h3>
+<p>The <code>kSecClass</code> attribute describes to Keychain what <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_class_keys_and_values">classification</a> an item is, and determines what other attributes can be stored with your item.</p>
+<p>For example, if your application was storing a certificate, you would use the <code>kSecClassCertificate</code> class attribute. This attribute tells Keychain what other attributes can be set on your item, such as <code>kSecAttrIssuer</code> and <code>kSecAttrPublicKeyHash</code>. Trying to set an attribute that doesn't exist on the <code>kSecClass</code> attribute will result in <code>OSStatus</code> code <code>errSecNoSuchAttr: -25303</code>. Also, not setting the <code>kSecClass</code> key in your Keychain Item will result in <code>OSStatus</code> error <code>errSecParam: -50</code>.</p>
+<p>Below are the available options for the <code>kSecClass</code> key:</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/security/ksecclassgenericpassword">kSecClassGenericPassword</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecclassinternetpassword">kSecClassInternetPassword</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecclasscertificate">kSecClassCertificate</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecclasskey">kSecClassKey</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecclassidentity">kSecClassIdentity</a></li>
+</ul>
+<p>If you want to see all available attributes regardless of class, here is the <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_attribute_keys_and_values">list</a>.</p>
+<h2 id="keychain-operations">Keychain Operations<a class="headerlink" href="#keychain-operations" title="Permanent link">#</a></h2>
+<p>In the following sections we will explain how to perform CRUD operations to Keychain items and what are some common gotchas.</p>
+<hr />
+<h3 id="create-item">Create Item<a class="headerlink" href="#create-item" title="Permanent link">#</a></h3>
+<!--
+In this section: I want to go over how to use `SecItemAdd(_:)`
+and what happens if you try to create something that already exists - you get a `errSecDuplicateItem`
+
+https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain
+-->
+
+<p>Use the <a href="https://developer.apple.com/documentation/security/1401659-secitemadd"><code>SecItemAdd(_:)</code></a> function to add an item to Keychain. Below is an example on how to add an item to Keychain.</p>
+<pre><code class="swift">@IBAction func AddButtonClicked(_ sender: Any) {
+    let item: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrAccount: &quot;username&quot;,
+        kSecAttrServer: &quot;example.com&quot;,
+        kSecValueData: &quot;some-password&quot;.data(using: String.Encoding.utf8)!
+    ]
+
+    let status = SecItemAdd(item as CFDictionary, nil)
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status) // status: 0
+        return
+    }
+
+    print(&quot;successfully saved&quot;)
+}
+</code></pre>
+
+<p>This is a goldilock example, meaning everything is setup correctly and no error's occurred, this of course will not happen everytime. In the case <code>AddButtonClicked(_:)</code> executes twice, you'd expect that Keychain will add another item into its database with duplicate data, right? <strong>Wrong!</strong> This will result in error <code>errSecDuplicateItem: -25299</code>. Please read <a href="https://developer.apple.com/documentation/security/errsecduplicateitem"><code>errSecDuplicateItem</code> documentation</a> to get a set of attributes (primary keys) that must be unique.</p>
+<p>In the following example, we are trying to store two <code>kSecClassInternetPassword</code> items in the Keychain. Since the set of <code>kSecAttrAccount</code> and <code>kSecAttrServer</code> are not unique between the items, the <code>item2</code> will result in the <code>errSecDuplicateItem</code> error.</p>
+<pre><code class="swift">let item1: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccount: account,
+    kSecAttrServer: &quot;example.com&quot;,
+    kSecValueData: passwordData
+]
+
+let status = SecItemAdd(item1 as CFDictionary, nil)
+guard status == errSecSuccess else {
+    print(&quot;status:&quot;, status) // status: 0
+    return
+}
+
+// ----
+
+let item2: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccount: account,
+    kSecAttrServer: &quot;example.com&quot;,
+    kSecValueData: passwordData,
+    kSecAttrLabel: &quot;some new label attribute&quot;
+]
+
+let status2 = SecItemAdd(item2 as CFDictionary, nil)
+guard status2 == errSecSuccess else {
+    print(&quot;status:&quot;, status2) // status: -25299
+    return
+}
+</code></pre>
+
+<hr />
+<h3 id="querying-items">Querying Item(s)<a class="headerlink" href="#querying-items" title="Permanent link">#</a></h3>
+<!--
+In this section:
+- I want to go over how to use `SecItemCopyMatching(_:)`
+- explain `kSecReturnData: true`
+- When you save duplicate items you get `errSecDuplicateItem`
+
+https://developer.apple.com/documentation/security/keychain_services/keychain_items/searching_for_keychain_items
+-->
+
+<p>Note from <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/searching_for_keychain_items#2922072">Apple documentation</a>:</p>
+<blockquote>
+<p>By default, your app can freely retrieve its own keychain items but not those of other apps. However, keychain services does provide mechanisms for broadening or narrowing that accessibility, for example, using the <a href="https://developer.apple.com/documentation/security/ksecattraccessgroup"><code>kSecAttrAccessGroup</code></a> attribute.</p>
+</blockquote>
+<p>Use the <a href="https://developer.apple.com/documentation/security/1398306-secitemcopymatching"><code>SecItemCopyMatching(_:)</code></a> function to query item(s) from Keychain. With the example below, take note that we are only searching across <code>kSecAttrServer</code> and not including <code>kSecAttrAccount</code>.</p>
+<pre><code class="swift">@IBAction func QueryClicked(_ sender: Any) {
+
+    let query: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrServer: &quot;example.com&quot;,
+        kSecReturnAttributes: true,
+        kSecReturnData: true
+    ]
+
+    var someItem: CFTypeRef?
+    let status = SecItemCopyMatching(query as CFDictionary, &amp;someItem)
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status)
+        return
+    }
+
+    guard let item = someItem else {
+        print(&quot;no Item&quot;) // errSecItemNotFound: -25300
+        return
+    }
+
+    print(&quot;result: \(item)&quot;)
+}
+</code></pre>
+
+<p>In the case where multiple accounts have the same <code>kSecAttrServer</code> set, we'd expect to see an array of items returned. But with the above example, only one item was returned. This is because <a href="https://developer.apple.com/documentation/security/1398306-secitemcopymatching#discussion"><strong>by default <code>SecItemCopyMatching(_:)</code> only returns the first match found</strong></a>. If you would like to return all items that match the provided query, you must set <code>kSecMatchLimit</code> in the query.</p>
+<pre><code class="swift">let query: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecMatchLimit: kSecMatchLimitAll, // &lt;--
+    // ...
+]
+</code></pre>
+
+<p>The two most important attributes when retrieving an item are:</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/security/ksecreturnattributes"><code>kSecReturnAttributes</code></a>: <strong>must be set to <code>true</code> in order to retrieve item's attributes</strong></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecreturndata"><code>kSecReturnData</code></a>: must be set to true in order to retrieve secret data.</li>
+</ul>
+<p>Even setting <code>kSecReturnData: true</code> and excluding <code>kSecReturnAttributes</code>, or setting it to false, will result in <code>item</code> returning as <code>nil</code>.</p>
+<pre><code class="swift">let query: [CFString: Any] = [
+    //...
+    kSecReturnAttributes: false,
+    kSecReturnData: true
+]
+
+// ...
+
+// prints: no Item
+</code></pre>
+
+<hr />
+<h3 id="updating-item">Updating Item<a class="headerlink" href="#updating-item" title="Permanent link">#</a></h3>
+<!--
+In this section: I want to go over how to use `SecItemUpdate(_:)`
+and what happens if you try to update something that doesnt exist
+
+https://developer.apple.com/documentation/security/keychain_services/keychain_items/updating_and_deleting_keychain_items
+-->
+
+<p>Use the <a href="https://developer.apple.com/documentation/security/1393617-secitemupdate"><code>SecItemUpdate(_:)</code></a> function to update an item in Keychain. It is important to note that you should provide as many attributes to help Keychain filter what item to update. In the case where a user has multiple accounts stored in Keychain and you simply queried for <code>kSecAttrServer</code> and <code>kSecClass</code>, all Keychain Items that match that query will be updated.</p>
+<pre><code class="swift">@IBAction func updateClicked(_ sender: Any) {
+
+    let query: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrServer: &quot;example.com&quot;,
+        kSecAttrAccount: &quot;username&quot;
+    ]
+
+    let newAttributes: [CFString: Any] = [
+        kSecValueData: &quot;new-password&quot;.data(using: String.Encoding.utf8)!
+    ]
+
+    let status = SecItemUpdate(query as CFDictionary, newAttributes as CFDictionary)
+
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status)
+        return
+    }
+
+    print(&quot;successfully updated&quot;)
+}
+</code></pre>
+
+<hr />
+<h3 id="deleting-item">Deleting Item<a class="headerlink" href="#deleting-item" title="Permanent link">#</a></h3>
+<!--
+In this section: I want to go over how to use `SecItemDelete(_:)`
+and what happens if you try to delete something that doesnt exist
+
+https://developer.apple.com/documentation/security/keychain_services/keychain_items/updating_and_deleting_keychain_items
+-->
+
+<p>Use the <a href="https://developer.apple.com/documentation/security/1395547-secitemdelete"><code>SecItemDelete(_:)</code></a> function to delete an item in Keychain. Just like when <a href="./#updating-item">updating an item</a>, you should provide as many attributes to help Keychain filter what item to delete. In the case where a user has multiple accounts stored in Keychain and you simply queried for <code>kSecAttrServer</code> and <code>kSecClass</code>, all Keychain Items that match that query will be deleted.</p>
+<pre><code class="swift">@IBAction func deleteClicked(_ sender: Any) {
+    let query: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrAccount: &quot;username&quot;,
+        kSecAttrServer: &quot;example.com&quot;
+    ]
+
+    let status = SecItemDelete(query as CFDictionary)
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status)
+        return
+    }
+
+    print(&quot;successfully deleted&quot;)
+}
+</code></pre>
+
+<hr />
+<h2 id="accessibility">Accessibility<a class="headerlink" href="#accessibility" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to talk about the different Accessible properties
+-->
+
+<p>In this section we will go over how to configure <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility"><strong><em>when</em></strong> your application has access to your Keychain items</a>. For this, we set the <a href="https://developer.apple.com/documentation/security/ksecattraccessible"><code>kSecAttrAccessible</code></a> attribute. By default, <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility#2974972">this attribute it set to <code>kSecAttrAccessibleWhenUnlocked</code></a>, but values for this attribute fall within two categories:</p>
+<p>Items that <u><strong>can</strong></u> be restored from a backup of another device.</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlocked">kSecAttrAccessibleWhenUnlocked</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecattraccessibleafterfirstunlock">kSecAttrAccessibleAfterFirstUnlock</a></li>
+</ul>
+<p>Items that <u><strong>cannot</strong></u> be restored from a backup of another device.</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly">kSecAttrAccessibleWhenUnlockedThisDeviceOnly</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecattraccessibleafterfirstunlockthisdeviceonly">kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</a></li>
+<li><a href="https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly">kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</a></li>
+</ul>
+<p>If you are using <code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code> – be prepared to encounter the <a href="https://www.osstatus.com/search/results?platform=all&amp;framework=Security&amp;search=25291"><code>errSecNotAvailable: -25291</code></a> error if the user does not have a passcode set. Here is where you can prompt the user that: <em>"They must set a device passcode in order to continue."</em></p>
+<p><em>Example</em></p>
+<pre><code class="swift">let query: [CFString: Any] = [
+  kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
+  // ...
+]
+</code></pre>
+
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h3>
+<p>You must also provide the item's encrypted data, <code>kSecValueData</code>, anytime you wish to update the <code>kSecAttrAccessible</code> attribute in the future.</p>
+<hr />
+<h2 id="add-faceidtouchid">Add FaceID/TouchID<a class="headerlink" href="#add-faceidtouchid" title="Permanent link">#</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">#</a></h3>
+<!--
+In this section:
+- NSFaceIDUsageDescription
+- I want to explain what `kSecAttrAccessControl` is and why is it important.
+- relationship between `kSecAttrAccessible` and `kSecAttrAccessControl`
+  - what happens if you set conflicting accessible attributes (`kSecAttrAccessControl` & `kSecAttrAccessible`)?!
+    - Result: you get a -50 error
+-->
+
+<p>In order to add biometrics such as FaceID or TouchID to a Keychain item, you must create a <a href="https://developer.apple.com/documentation/security/secaccesscontrol"><code>SecAccessControl</code></a> object using the <a href="https://developer.apple.com/documentation/security/1394452-secaccesscontrolcreatewithflags"><code>SecAccessControlCreateWithFlags(_:)</code></a> function and set it the <a href="https://developer.apple.com/documentation/security/ksecattraccesscontrol"><code>kSecAttrAccessControl</code></a> attribute.</p>
+<p><em>example</em></p>
+<pre><code class="swift">var error: Unmanaged&lt;CFError&gt;? = nil
+let accessControlObject = SecAccessControlCreateWithFlags(nil,
+                                            kSecAttrAccessibleWhenUnlocked,
+                                            .userPresence,
+                                            &amp;error)
+
+let item: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccessControl: accessControlObject
+    // ...
+]
+
+// ...
+</code></pre>
+
+<h3 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">#</a></h3>
+<!--
+In this section:
+I want to go over the different flags and what type of errors to expect in certain scenarios
+-->
+
+<p>In this section we will be going over some of the flags you can set and what errors you may encounter. In you want to see the entire list of flags, please checkout <a href="https://developer.apple.com/documentation/security/secaccesscontrolcreateflags"><code>SecAccessControlCreateFlag</code></a> for more information.</p>
+<p>Flags we will go over:</p>
+<ul>
+<li><code>.userPresence</code> - FaceID/TouchID/Device Passcode.</li>
+<li><code>.devicePasscode</code> - Device Passcode only.</li>
+<li><code>.biometryAny</code> - FaceID/TouchID only (allows for biometrics changes).</li>
+<li><code>.biometryCurrentSet</code> - FaceID/TouchID only (invalidates item when biometrics change).</li>
+<li><code>.applicationPassword</code> - Application Specific password.</li>
+</ul>
+<h4 id="nsfaceidusagedescription">NSFaceIDUsageDescription<a class="headerlink" href="#nsfaceidusagedescription" title="Permanent link">#</a></h4>
+<p>When using <code>.userPresence</code>, if <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsfaceidusagedescription"><code>NSFaceIDUsageDescription</code></a> is not set in your plist, your application will revert to prompting the user for the Device Passcode. But when using <code>.biometryAny</code> or <code>.biometryCurrentSet</code>, failing to set <code>NSFaceIDUsageDescription</code> will result in your application crashing with the following error:</p>
+<pre><code class="text">ERROR: This app has crashed because it attempted to access privacy-sensitive
+data without a usage description. The app's Info.plist must contain
+an NSFaceIDUsageDescription key with a string value explaining to
+the user how the app uses this data.
+</code></pre>
+
+<h4 id="userpresence">.userPresence<a class="headerlink" href="#userpresence" title="Permanent link">#</a></h4>
+<p><a href="https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/1392879-userpresence"><code>.userPresence</code></a> is more than likely the flag you would be using in your application. Other flags such as <code>.devicePasscode</code> and <code>.biometryAny</code>, are simply slight derivatives of this flag.</p>
+<p><img alt="" src="../../images/understanding-keychain/userPresence-flow.jpg" /></p>
+<p>Above is the flow you can expect for your application to take when saving/retrieving a Keychain Item with the <code>.userPresence</code> flag. <strong>It is very possible to encounter <a href="./#errsecauthfailed"><code>errSecAuthFailed: -25293</code></a> errors when working with <code>.userPresence</code> flagged items.</strong> Please review the above flows for a better understanding. In addition to the <em>Retrieving Flow</em>, If the user adds back a passcode to the device <em>(it doesn't have to be the same passcode)</em> the item can once again be retrieved.</p>
+<h4 id="biometrycurrentset">.biometryCurrentSet<a class="headerlink" href="#biometrycurrentset" title="Permanent link">#</a></h4>
+<p>The flag that differs from <code>.userPresence</code> the most would be <a href="https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/2937192-biometrycurrentset">.biometryCurrentSet</a>, it invalidates any Keychain Items once a finger is added/removed on TouchID or if the user re-enrolls for FaceID.</p>
+<p><img alt="" src="../../images/understanding-keychain/biometryCurrentSet-flow.jpg" /></p>
+<h4 id="applicationpassword">.applicationPassword<a class="headerlink" href="#applicationpassword" title="Permanent link">#</a></h4>
+<p>The last flag we will go over is <a href="https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/1617930-applicationpassword">.applicationPassword</a>, this allows for the user to set an application specific passcode in order to retrieve the item. When using this flag, iOS will prompt the user to insert a passcode. Meaning, you don't need to worry about providing a view to capture the application password. Unlike retrieving an item using device security such as <code>.devicePasscode</code>, after 5 failed attempts, Keychain returns the error <code>errSecAuthFailed: -25293</code> instead of disabling the item retrieval. Meaning, after 5 failed attempts the user can simply try again without being penalized.</p>
+<h4 id="combining-flags">Combining Flags<a class="headerlink" href="#combining-flags" title="Permanent link">#</a></h4>
+<p>In the case you want to authenticate the user with both <code>.userPresence</code> and <code>.applicationPassword</code>, you may combine them using an array.</p>
+<pre><code class="swift">var error: Unmanaged&lt;CFError&gt;? = nil
+let access = SecAccessControlCreateWithFlags(nil,
+                                            kSecAttrAccessibleWhenUnlocked,
+                                            [.userPresence, .applicationPassword],
+                                            &amp;error)
+</code></pre>
+
+<p>Some combinations are not allowed such as <code>[.userPresence, .devicePasscode]</code>, so be sure to print out any errors for more information.</p>
+<h3 id="faceidtouchid-example">FaceID/TouchID Example<a class="headerlink" href="#faceidtouchid-example" title="Permanent link">#</a></h3>
+<p>In this example, we will create an item that will require FaceID, TouchID, or Passcode in order to be retrieved.</p>
+<pre><code class="swift">@IBAction func saveWithAccessFlagClicked(_ sender: Any) {
+    var error: Unmanaged&lt;CFError&gt;? = nil
+    guard let access = SecAccessControlCreateWithFlags(nil,
+                                                      kSecAttrAccessibleWhenUnlocked,
+                                                      .userPresence,
+                                                      &amp;error) else { return }
+
+    let item: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrAccessControl: access,
+        kSecAttrServer: &quot;example.com&quot;,
+        kSecAttrAccount: &quot;username&quot;,
+        kSecValueData: &quot;some-password&quot;.data(using: String.Encoding.utf8)!
+    ]
+
+    let status = SecItemAdd(item as CFDictionary, nil)
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status)
+        return
+    }
+
+    print(&quot;successfully saved with access attribute&quot;)
+}
+</code></pre>
+
+<p>Next, we will retrieve the <code>.userPresence</code> flagged item.</p>
+<pre><code class="swift">@IBAction func QueryClicked(_ sender: Any) {
+
+    let query: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecAttrServer: &quot;example.com&quot;,
+        kSecAttrAccount: &quot;username&quot;,
+        kSecReturnAttributes: true,
+        kSecReturnData: true
+    ]
+
+    var someItem: CFTypeRef?
+    let status = SecItemCopyMatching(query as CFDictionary, &amp;someItem)
+    guard status == errSecSuccess else {
+        print(&quot;status:&quot;, status)
+        return
+    }
+
+    guard let item = someItem,
+        let username = item[kSecAttrAccount] as? String,
+        let passwordData = item[kSecValueData] as? Data,
+        let password = String(data: passwordData, encoding: .utf8) else {
+        print(&quot;Item not found&quot;)
+        return
+    }
+
+    print(&quot;username:&quot;, username)
+    print(&quot;password:&quot;, password)
+}
+</code></pre>
+
+<h3 id="ksecuseauthenticationuiskip">kSecUseAuthenticationUISkip<a class="headerlink" href="#ksecuseauthenticationuiskip" title="Permanent link">#</a></h3>
+<!--
+In this section:
+- Querying Keychain and returns 2 items, one of which is protected by faceID. - What happens?
+- go over:
+  - [kSecUseAuthenticationUISkip](https://developer.apple.com/documentation/security/ksecuseauthenticationuiskip) - Silently skip any items that require user authentication.
+-->
+
+<p>When querying items from Keychain, you may be returned items that have the <code>kSecAttrAccessControl</code> attribute set, which will require the user to authenticate in order to retrieve the item. You can exclude these results by setting the <a href="https://developer.apple.com/documentation/security/ksecuseauthenticationui"><code>kSecUseAuthenticationUI</code></a> attribute in your query.</p>
+<pre><code class="swift">
+@IBAction func QueryAllClicked(_ sender: Any) {
+
+    let query: [CFString: Any] = [
+        kSecClass: kSecClassInternetPassword,
+        kSecMatchLimit: kSecMatchLimitAll,
+        kSecUseAuthenticationUI: kSecUseAuthenticationUISkip,
+        ...
+    ]
+
+    var someItem: CFTypeRef?
+    let status = SecItemCopyMatching(query as CFDictionary, &amp;someItem)
+    ...
+</code></pre>
+
+<h4 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">#</a></h4>
+<p>When setting a <code>kSecAttrAccessControl</code> attribute on your Keychain Item, you cannot set the <code>kSecAttrAccessible</code> attribute on the Keychain Item itself. Doing so will result in a <code>errSecParam: -50</code> error, even if both are set to the same value. As an example, the following will return an error:</p>
+<pre><code class="swift">var error: Unmanaged&lt;CFError&gt;? = nil
+guard let access = SecAccessControlCreateWithFlags(nil,
+                                                  kSecAttrAccessibleWhenUnlocked, // &lt;--
+                                                  .userPresence,
+                                                  &amp;error) else { return }
+
+let query: [CFString: Any] = [
+    kSecAttrAccessControl: access,
+    kSecAttrAccessible:kSecAttrAccessibleWhenUnlocked, // &lt;--
+    //...
+]
+
+let status = SecItemAdd(query as CFDictionary, nil) // equals -50 (errSecParam)
+</code></pre>
+
+<hr />
+<h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to go over common errors that you might encounter when working with keychain
+
+errSecParam: -50
+errSecItemNotFound: -25300
+errSecDuplicateItem: -25299
+errSecNoSuchAttr: -25303
+https://developer.apple.com/documentation/security/errsecduplicateitem
+-->
+
+<h3 id="errsecitemnotfound-25300">errSecItemNotFound: -25300<a class="headerlink" href="#errsecitemnotfound-25300" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errsecitemnotfound"><code>errSecItemNotFound</code></a>, occurs when performing an Keychain operation such as <a href="https://developer.apple.com/documentation/security/1398306-secitemcopymatching"><code>SecItemCopyMatching(_:)</code></a>, <a href="https://developer.apple.com/documentation/security/1393617-secitemupdate"><code>SecItemUpdate(_:)</code></a>, or <a href="https://developer.apple.com/documentation/security/1395547-secitemdelete"><code>SecItemDelete(_:)</code></a> and Keychain fails to find any matching items. In the case of <code>SecItemUpdate(_:)</code> and <code>SecItemDelete(_:)</code>, its best to query for the item before trying to perform an operation.</p>
+<h3 id="errsecparam-50">errSecParam: -50<a class="headerlink" href="#errsecparam-50" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errSecParam"><code>errSecParam</code></a>, occurs when you fail to properly set an attribute. Where I see this happening the most is when you fail to properly encode the <code>kSecValueData</code> as <code>CFData</code> or you fail to provide a necessary attribute such as <code>kSecClass</code>. I would investigate those two attributes first when you encounter <code>errSecParam</code>.</p>
+<h3 id="errsecauthfailed-25293">errSecAuthFailed: -25293<a class="headerlink" href="#errsecauthfailed-25293" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errsecauthfailed"><code>errSecAuthFailed</code></a>, occurs when your application is trying to save an item that requires access control, but FaceID, TouchID, or Device Passcode are not setup on the device. Or if the user has removed the device's security since saving the item.</p>
+<h3 id="errsecnosuchattr-25303">errSecNoSuchAttr: -25303<a class="headerlink" href="#errsecnosuchattr-25303" title="Permanent link">#</a></h3>
+<p><a href="https://developer.apple.com/documentation/security/errSecNoSuchAttr"><code>errSecNoSuchAttr</code></a>, occurs when you try to set an attribute that doesn't exist for the provided <code>kSecClass</code>. In the bottom example we try to set <code>kSecAttrIssuer</code>, which is only available for the <code>kSecClassCertificate</code> class.</p>
+<pre><code class="swift">let password = &quot;some-password&quot;.data(using: String.Encoding.utf8)!
+let query: [CFString: Any] = [
+    kSecClass: kSecClassInternetPassword,
+    kSecAttrAccount: &quot;username&quot;,
+    kSecAttrIssuer: &quot;Fabian issuer&quot;.data(using: String.Encoding.utf8)!, // kSecClassCertificate only
+    kSecAttrServer: &quot;example.com&quot;,
+    kSecValueData: password
+]
+
+let status = SecItemAdd(query as CFDictionary, nil)
+guard status == errSecSuccess else {
+    print(&quot;status:&quot;, status) // status: -25303
+    return
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2020 <a href="http://celylog.in">Cely</a></p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../usage/advance_usage/" style;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../api/cely/" style">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+  <!-- at the end of the BODY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(() => $('table').addClass('docutils'));
+    // PASTE doc search here
+    /*
+    docsearch({
+      apiKey: '<KEY-GOES-HERE>',
+      indexName: 'cely',
+      inputSelector: '.wy-side-nav-search input[type="text"]',
+      debug: false
+    });
+    */
+  </script>
+
+</body>
+</html>

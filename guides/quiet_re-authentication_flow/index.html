@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Quiet re authentication flow - Cely</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Quiet re authentication flow";
+    var mkdocs_page_input_path = "guides/quiet_re-authentication_flow.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../..">
+          <img src="/images/CelyLogo_beta.png" />
+        </a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../includes/installing-cely/">Installation</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#carthage">Carthage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../includes/installing-cely/#cocoapods">CocoaPods</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Usage</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/basic_usage/">Basic</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#cely-setup">Cely Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#save-credentials">Save Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#code">Code:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../usage/basic_usage/#whats-next">What's next?</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/advance_usage/">Advance</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../understanding_keychain/">Understanding Keychain</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#keychain-anatomy">Keychain Anatomy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#keychain-operations">Keychain Operations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#accessibility">Accessibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#add-faceidtouchid">Add FaceID/TouchID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../understanding_keychain/#common-errors">Common Errors</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API Reference</span></p>
+                <ul >
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely/">Cely</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#setup_">setup(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#changestatus_">changeStatus(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#get_-gt-any">get(_:) -&gt; Any?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#save_-gt-result">save(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#currentloginstatus-gt-celystatus">currentLoginStatus() -&gt; CelyStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#logout_">logout(_:)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely/#isloggedin-gt-bool">isLoggedIn() -&gt; Bool</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/cely-credentials/">Cely Credentials</a>
+    <ul >
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#set_-gt-result">set(_:) -&gt; Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../api/cely-credentials/#get-gt-result">get() -&gt; Result</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/protocols/">Protocols</a>
+    <ul >
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../api/constants/">Constants</a>
+    <ul >
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Cely</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Quiet re authentication flow</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!--
+Authors:
+- Fabian Buentello
+-->
+
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h1>
+<p><em>Quiet Re-Authentication</em> allows your application to reauthenticate in the background without requiring the user to login. Below is a diagram illistrating the steps your application should take when adopting this flow.</p>
+<p><em>Quiet Re-Authentication Flow</em>
+<img alt="" src="../../images/guides/quiet_re-authentication_flow.jpg" /></p>
+<h2 id="quiet-re-authentication-with-cely">Quiet Re-Authentication with Cely<a class="headerlink" href="#quiet-re-authentication-with-cely" title="Permanent link">#</a></h2>
+<p>In the next few sections were going to be going over Cely's role/responsibility in this flow and how to adopt it into your application.</p>
+<h2 id="app-launch-flow">App Launch Flow<a class="headerlink" href="#app-launch-flow" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to go over the "app launch flow with cely" diagram.
+-->
+
+<p><img alt="" src="../../images/guides/quiet_re-authentication_flow-with_cely-app_launch_flow.jpg" /></p>
+<h4 id="cely-responsibility">Cely Responsibility<a class="headerlink" href="#cely-responsibility" title="Permanent link">#</a></h4>
+<!--
+In this section:
+I want to go over the Cely's responsibility during the "app launch flow"
+-->
+
+<p>With the recent changes made to the <a href="https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle">App's Life Cycle</a>, depending on what version of iOS your application will support, iOS 12 and earlier or iOS 13 and later — you will need to call <code>Cely.setup(_:)</code> in different parts of your app's codebase.</p>
+<p>The rest of the guide will follow as if your application supports iOS 13 &amp; later. In the next section we will shift our focus to <code>scene(_:willConnectTo:options:)</code></p>
+<pre><code class="swift">// iOS 13 | Swift 5.0 | Xcode 11.0
+import Cely
+
+struct User: CelyUser {
+
+  enum Property: CelyProperty {
+    case token = &quot;token&quot;
+  }
+}
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            self.window = window
+            window.makeKeyAndVisible()
+
+            Cely.setup(with: window, forModel: User(), requiredProperties: [.token], withOptions: [
+                .homeViewController: UIHostingController(rootView: HomeContentView()),
+                .loginViewController: UIHostingController(rootView: LoginContentView())
+            ])
+        }
+    }
+}
+</code></pre>
+
+<p>As a brief explanation, we pass your application's <code>UIWindow</code> to give Cely access to switch inbetween your Login and Home Screen. Next, we pass an instance of our <code>User</code> model which contains the <code>Property</code> enum. Finally, using the <code>requiredProperties</code> parameter, we tell Cely what properties are required in order to continue to the <code>.homeViewController</code>. In this example, if Cely does not find a property <code>.token</code> in its storage, or if <code>requiredProperties</code> is empty, Cely will redirect the user to <code>.loginViewController</code>.</p>
+<h4 id="developer-responsibility">Developer Responsibility<a class="headerlink" href="#developer-responsibility" title="Permanent link">#</a></h4>
+<!--
+In this section:
+I want to go over the Developer's responsibility during the "app launch flow"
+-->
+
+<p>Below is an example of what is required of the developer to implement in order to complete the App Launch Flow for <em>Quiet Re-Authentication</em>. We check to see if the user is logged in — then retrieve the <code>token</code>. If no token is returned then we log the user out. Next, we check to see if the user's token is expired. If the token is expired we logout the user. We will finish writing <code>sceneWillEnterForeground(_:)</code> in the <strong>Expired Token Flow</strong>.</p>
+<pre><code class="swift">class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+    ...
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        if Cely.isLoggedIn() {
+            guard let token = Cely.get(key: &quot;token&quot;) as? String
+                else { return Cely.logout() }
+
+            LoginService.status(for: token) { result in
+                switch result {
+                case .success:
+                case .failure(let error as HTTPError) where error == .unauthorized:
+                    // TODO: Revisit in Expired Token Flow
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<pre><code class="swift">class LoginService {
+    static func status(for token: String, completionHandler: @escaping (Result&lt;Void?, Error&gt;) -&gt; Void) {
+        // make API call to check token status
+        completionHandler(someResult)
+    }
+}
+</code></pre>
+
+<h2 id="login-flow">Login Flow<a class="headerlink" href="#login-flow" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to go over the "login flow with cely" diagram.
+-->
+
+<p><img alt="" src="../../images/guides/quiet_re-authentication_flow-with_cely-login_flow.jpg" /></p>
+<p>Though a built-in <code>LoginViewController</code> is provided by Cely, as of Cely v3, it is encouraged for this built-in controller to only be used for rapid development/prototyping and not production. In this example, once the API has authenticated our credentials we save the <code>token</code> in keychain using <code>Cely.save(_:)</code>. If successful, we also store the user credentials in keychain using <code>Cely.credentials.set(_:)</code>. Lastly, we change the user's logged in status with cely using <code>Cely.changeStatus(_:)</code> which will transition our application to the <code>.homeViewController</code>. Below is a pseudo code example:</p>
+<pre><code class="swift">// LoginViewController.swift
+
+let username = usernameTextField.text
+let password = passwordTextField.text
+
+Login.Service(username: username, password: password)
+</code></pre>
+
+<pre><code class="swift">class LoginService {
+
+    ...
+
+    static func login(username: String, password: String) {
+        API.login(username: username, password: password) { result in
+            switch result {
+            case .success(let token):
+                if Cely.save(token, forKey: &quot;token&quot;, securely: true) == .success {
+                    Cely.credentials.set(
+                        username: username,
+                        password: password,
+                        server: &quot;api.example.com&quot;
+                    )
+                    Cely.changeStatus(to: .loggedIn)
+                }
+            case .failure(let error):
+                // handle error
+            }
+        }
+    }
+}
+</code></pre>
+
+<h2 id="expired-token-flow">Expired Token Flow<a class="headerlink" href="#expired-token-flow" title="Permanent link">#</a></h2>
+<!--
+In this section:
+I want to go over the "expired token flow with cely" diagram.
+-->
+
+<p><img alt="" src="../../images/guides/quiet_re-authentication_flow-with_cely-expired_token_flow.jpg" /></p>
+<p>If you come from a Backend development background, the idea of implementing a <a href="https://auth0.com/learn/refresh-tokens/">refresh token</a> to handle re-authentication may seem like the best option, but its going to cost a bit of overhead and precious developer time. Instead, because of the security Keychain Services provides, we are able to <a href="https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain">store users credentials directly onto the device</a>, making re-authentication extremely easy. How does Cely help us do this?</p>
+<p>Up until this point we have stored the API token in Keychain Services using <code>Cely.save(_:)</code>, but it is expected for this token to eventually expire. When it does expire, we will be receiving <code>401</code> errors from our API. Since we are following the <em>Quiet Re-Authentication Flow</em>, our application will re-authenticate the user instead of logging them out.</p>
+<p>There are two places where we need to handle Re-authentication.</p>
+<ul>
+<li>When the app launch, <em>(if the user is already logged in)</em></li>
+<li>When an API request returns <code>401</code> error</li>
+</ul>
+<h4 id="app-launch">App Launch<a class="headerlink" href="#app-launch" title="Permanent link">#</a></h4>
+<p>With Scene based life-cycle events <code>sceneWillEnterForeground(_:)</code> will get called every time your application enters the foreground, regardless if its from a terminated/suspended state or background state.</p>
+<p>Below is a pseudo code example for when the application starts up:</p>
+<!--
+In this section:
+I want to go over the methods [and actions] needed in `SceneDelegate` in order to handle a unauthenticated user during App Launch
+-->
+
+<pre><code class="swift">
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+    ...
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        guard Cely.isLoggedIn() else { return }
+
+        guard let token = Cely.get(key: &quot;token&quot;) as? String
+            else { return Cely.logout() }
+
+        LoginService.status(for: token) { result in
+            switch result {
+            case .success:
+            case .failure(let error as HTTPError) where error == .unauthorized:
+                // * HERE *
+                let credentials = Cely.credentials.get()
+                LoginService.reAuthenticate(username: credentials.username, password: credentials.password) {
+                  // ...
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<pre><code class="swift">class LoginService {
+
+    ...
+
+    static func reAuthenticate(username: String, password: String, completionHandler: @escaping (Result&lt;Void?, Error&gt;) -&gt; Void) {
+        API.login(username: username, password: password) { (result) in
+            switch result {
+            case .success(let token):
+                if Cely.save(token, forKey: &quot;token&quot;, securely: true) == .success {
+                    return completionHandler(.success(nil))
+                }
+            case .failure(let error):
+                // handle error
+                // Log user out
+            }
+        }
+    }
+}
+</code></pre>
+
+<h4 id="handle-401-errors-from-api">Handle <code>401</code> errors from API<a class="headerlink" href="#handle-401-errors-from-api" title="Permanent link">#</a></h4>
+<!--
+In this section:
+I want to go over whats needed in order to reauthenticate a user on a 401 response
+-->
+
+<p>It is up to the developer's discretion on how the second example, <em>API request returns <code>401</code> error</em>, will be architected. But essentially, you will need to do the following:</p>
+<ul>
+<li>Intercept a failed response from an API request</li>
+<li>Re-Authenticate user<ul>
+<li>on success:<ul>
+<li>re-request failed API request and continue original call sequence</li>
+</ul>
+</li>
+<li>on failure:<ul>
+<li>log user out</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="swift">
+class SomeService {
+
+    static func getSomeData(with id: String, completionHandler: @escaping (Result&lt;Void?, Error&gt;) -&gt; Void) {
+        API.someEndpoint(id: id) { (result) in
+            switch result {
+            case .success(let data):
+                // do something with data
+            case .failure(let error as HTTPError) where error == .unauthorized:
+                let credentials = Cely.credentials.get()
+                return LoginService.reAuthenticate(username: credentials.username, password: credentials.password) { (result) in
+                    switch result {
+                    case .success(let token):
+                        // * UPDATE TOKEN *
+                        if Cely.save(token, forKey: &quot;token&quot;, securely: true) == .success {
+                            return SomeService.getSomeData(with: id, completionHandler: completionHandler)
+                        }
+                    case .failure(let err as HTTPError) where err == .unauthorized:
+                        // handle error
+                        // Log user out
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Upon success, since the credentials used to re-authenticate are still valid, <strong>only</strong> update the <code>token</code> to avoid multiple expensive calls.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">#</a></h2>
+<p>In conclusion, with this guide you should be given a high level overview of how to implement <em>Quiet Re-Authentication</em> in your application using Cely. This document is a living document so if something is not clear or if you feel we are missing something, please open up an issue on this repo. The Cely team values documentation above all, so your help to improve it would greatly be appreciated 😀.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2020 <a href="http://celylog.in">Cely</a></p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+  <!-- at the end of the BODY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(() => $('table').addClass('docutils'));
+    // PASTE doc search here
+    /*
+    docsearch({
+      apiKey: '<KEY-GOES-HERE>',
+      indexName: 'cely',
+      inputSelector: '.wy-side-nav-search input[type="text"]',
+      debug: false
+    });
+    */
+  </script>
+
+</body>
+</html>
