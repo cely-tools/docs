@@ -1,15 +1,37 @@
-<div style="text-align:center"><img src ="images/READMEHeader.png" /></div>
+<div style="text-align:center">
+  <img src="images/READMEHeader.png" />
+  <img src="images/background_cely_login.gif" />
+  <br/>
+  <br/>
+   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat"/>
+    <a href="https://github.com/Carthage/Carthage">
+      <img
+        src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"
+        alt="Carthage compatible"/>
+    </a>
+    <a href="https://cocoapods.org/pods/Cely">
+      <img
+        src="https://img.shields.io/cocoapods/v/Cely.svg"
+        alt="CocoaPods compatible"/>
+    </a>
+    <a href="http://github.com/cookiecutter-swift/Framework">
+      <img
+        src="https://img.shields.io/badge/cookiecutter--swift-framework-red.svg"
+        alt="Cookiecutter-Swift"/>
+    </a>
+    <a href="https://app.bitrise.io/app/aff729145cb46dfe">
+      <img
+        src="https://app.bitrise.io/app/aff729145cb46dfe/status.svg?token=YUV0bymd7P_w2tdiKw2xOQ&branch=master"
+        alt="Build Status"/>
+    </a>
+    <a href="https://codecov.io/gh/initFabian/Cely">
+      <img
+        src="https://codecov.io/gh/initFabian/Cely/branch/master/graph/badge.svg"
+        alt="codecov"/>
+    </a>
+</div>
 
-![Swift 4.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![CocoaPods compatible](https://img.shields.io/cocoapods/v/Cely.svg)](https://cocoapods.org/pods/Cely)
-[![Cookiecutter-Swift](https://img.shields.io/badge/cookiecutter--swift-framework-red.svg)](http://github.com/cookiecutter-swift/Framework)
-[![Build Status](https://app.bitrise.io/app/aff729145cb46dfe/status.svg?token=YUV0bymd7P_w2tdiKw2xOQ&branch=master)](https://app.bitrise.io/app/aff729145cb46dfe)
-[![codecov](https://codecov.io/gh/initFabian/Cely/branch/master/graph/badge.svg)](https://codecov.io/gh/initFabian/Cely)
-
-![](images/background_cely_login.gif)
-
-
+<br/>
 
 {!docs/includes/why-cely.md!}
 
