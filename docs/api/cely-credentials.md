@@ -10,7 +10,7 @@ public func set(
   username: String,
   password: String,
   server: String,
-  accessibility: [AccessibilityOptions]
+  controlOptions: [AccessControlOptions]
 ) -> Result<Void, Error>
 ```
 
@@ -21,7 +21,7 @@ let credentialResult = Cely.credentials.set(
     username: username,
     password: password,
     server: "api.example.com"
-    accessibility: [.biometricsIfPossible]
+    controlOptions: [.biometricsIfPossible]
 )
 
 switch credentialResult {
@@ -34,12 +34,12 @@ case let .failure(error):
 
 _Parameters_
 
-Parameter | Type | Required? | Description
-----|------|----------|--------
-`username` | `String` | ✅ | username for user.
-`password` | `String` | ✅ | password for user.
-`server` | `String` | ✅ | API uri for account.
-`accessibility` | [`[AccessibilityOptions]`](/api/constants/#accessibilityoptions) | no | Array of `AccessibilityOptions` for credentials to be saved with.
+| Parameter        | Type                                                             | Required? | Description                                                       |
+| ---------------- | ---------------------------------------------------------------- | --------- | ----------------------------------------------------------------- |
+| `username`       | `String`                                                         | ✅         | username for user.                                                |
+| `password`       | `String`                                                         | ✅         | password for user.                                                |
+| `server`         | `String`                                                         | ✅         | API uri for account.                                              |
+| `controlOptions` | [`[AccessControlOptions]`](/api/constants/#accesscontroloptions) | no        | Array of `AccessControlOptions` for credentials to be saved with. |
 
 
 <br>
