@@ -202,7 +202,7 @@
   username: String,
   password: String,
   server: String,
-  accessibility: [AccessibilityOptions]
+  controlOptions: [AccessControlOptions]
 ) -&gt; Result&lt;Void, Error&gt;
 </code></pre>
 
@@ -212,7 +212,7 @@ let credentialResult = Cely.credentials.set(
     username: username,
     password: password,
     server: &quot;api.example.com&quot;
-    accessibility: [.biometricsIfPossible]
+    controlOptions: [.biometricsIfPossible]
 )
 
 switch credentialResult {
@@ -253,10 +253,10 @@ case let .failure(error):
 <td>API uri for account.</td>
 </tr>
 <tr>
-<td><code>accessibility</code></td>
-<td><a href="/api/constants/#accessibilityoptions"><code>[AccessibilityOptions]</code></a></td>
+<td><code>controlOptions</code></td>
+<td><a href="/api/constants/#accesscontroloptions"><code>[AccessControlOptions]</code></a></td>
 <td>no</td>
-<td>Array of <code>AccessibilityOptions</code> for credentials to be saved with.</td>
+<td>Array of <code>AccessControlOptions</code> for credentials to be saved with.</td>
 </tr>
 </tbody>
 </table>
